@@ -1,0 +1,69 @@
+\documentclass[12pt]{book}
+
+\usepackage[ utf8x ]{ inputenc }
+\usepackage[ romanian ]{ babel }
+
+\usepackage{scrextend}
+
+\usepackage[left=15mm, top=0.5in,bottom=0.5in]{geometry}
+
+\begin{document}
+
+\title{Lucrare Licenta}
+\maketitle
+
+\section{Introducere}
+\section{Tehnologii folosite}
+\subsection{Java}
+
+Java este un limbaj de programare orientat-obiect realizat de către James Gosling în cadrul companiei Sun Mycrosystems (acum filiala Oracle) și a fost creat să aibă cât mai puține dependențe legate de implementare. A fost creat ca să ajute dezvoltatorii de aplicații, limbajul fiind unul de tip WORA (Write Once Run Anywhere, traducere: Scrie odată rulează peste tot).  A fost lansat în anul 1995 iar de atunci a suferit o popularitate foarte mare, majoritatea aplicațiilor distribuite fiind scrise în Java, iar odată cu evoluția tehnologiei, limbajul de programare a devenit utilizat și la scrierea aplicațiilor mobile, agendelor telefonice, etc. Java este utilizat în prezent , având un real succes, și la programarea aplicațiilor destinate intranet-urilor. Astăzi, Java este unul dintre cele mai utilizate limbaje de programare, în special pentru aplicațiile web de tip client-server, având reportat un număr de 9 milioane de dezvoltatori.
+
+Limbajul Java își însușește o mare parte din sintaxa limbajelor C și C++. Diferența dintre aceste limbaje este făcută în cadrul nivelului de jos al programării, Java având mai puține facilități , dar obiectul modelelor este de asemenea simplificat. Un program Java care este corect și care nu suferă modificări poate rula pe orice platformă care are instalată mașina virtuală Java(JVM care inseamnă Java Virtual Machine). Acest lucru este posibil deoarece codul scris în Java este compilat într-un format standard numit cod ce octeți( in engleză byte-code). Codul de octeți este de fapt un cod intermediar între codul mașină și codul sursă. Java Virtual Machine este disponibilă pentru toată lumea incepând din anul 2006, atunci când Sun a publicat un articol prin care anunțau că varianta companiei de JVM va fii open-source. Există și alți furnizori de JVM, printre care Oracle, IBM, Bea, FSF.
+
+Oracle a furnizat pentru Java 4 platforme:
+\begin{addmargin}[4em]{1em}
+\begin{itemize}
+\item Java Card – pentru smartcarduri (carduri cu cip)
+\item Java Platform, Micro Edition (Java ME) – pentru hardware cu resurse limitate gen telefoane mobile
+\item Java Platform, Standard Edition(Java SE)- pentru sisteme gen workstation ( gasim la PC-uri)
+\item Java Platform, Enterprise Edition(Java EE) – pentru sisteme de calcul mari
+\end{itemize}
+\end{addmargin}
+
+
+Mai multe versiuni au apărut de-a lungul timpului, și anume un număr de 9 versiuni. Acestea sunt :
+\begin{addmargin}[4em]{1em}
+\begin{itemize}
+\item JDK 1.0 (1996) – versiunea inițială
+\item JDK 1.1 (1997)
+\item J2SE 1.2 (1998)
+\item J2SE 1.3 (2000)
+\item J2SE 1.4 (2002)
+\item J2SE 5.0 (2004)
+\item Java SE 6 (2006)
+\item Java SE 7 (2012)
+\item Java SE 8 (2014)
+\end{itemize}
+\end{addmargin}
+Ultima versiune a limbajului Java (Java SE 8 -2014) este singura versiune gratis suportată de Oracle.
+
+Un IDE (Integrated Development Environment) este, după cum spune numele, un mediu de lucru care permite dezvoltarea aplicațiilor specifice unui limbaj de programare. Pentru Java sunt următoarele : JCreator, Eclipse, NetBeans,BEA Workshop, BlueJ, CodeGuide,Dr Java, IntelliJ IDEA, JBuilder,JDeveloper, KDevelop.
+
+Limbajul de programare Java a fost creat pe baza a cinci obiective majore:
+\begin{addmargin}[4em]{1em}
+\begin{enumerate}
+\item Trebuie să fie simplu, orientat pe obiect și familiar
+\item Trebuie să fie robust și sigur.
+\item Trebuie să fie neutru din punct de vedere al arhitecturii și în același timp, portabil.
+\item Trebuie să fie executat cu performanță ridicată.
+\item Trebuie să fie interpretat, filetat și dinamic.
+\end{enumerate}
+\end{addmargin}
+
+Oracle Corporation este proprietarul actual al implementăriioficiale a platformei Java Standard Edition, ca urmare a achiziției companiei Sun Microsystems în anul 2010. Implementarea actuală este bazată pe implementarea originală facută de cei de la Sun. Implementarea Oracle este disponibilă pentru Microsoft Windows (încă merge și pentru Windows XP), Mac OS X, Linux și Solaris.
+
+Implementarea Oracle este distribuită în două moduri:
+
+
+
+\end{document}
