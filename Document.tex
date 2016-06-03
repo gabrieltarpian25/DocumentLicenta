@@ -7,19 +7,48 @@
 
 \usepackage[left=15mm, top=0.5in,bottom=0.5in]{geometry}
 
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+
 \begin{document}
 	
 \title{Lucrare Licenta}
 \maketitle
 	
-\section{Introducere}
-\section{Tehnologii folosite}
-\subsection{Java}
+\chapter{Introducere}
+\chapter{Tehnologii folosite}
+\section{Java}
 	
 Java este un limbaj de programare orientat-obiect realizat de către James Gosling în cadrul companiei Sun Mycrosystems (acum filiala Oracle) și a fost creat să aibă cât mai puține dependențe legate de implementare. A fost creat ca să ajute dezvoltatorii de aplicații, limbajul fiind unul de tip WORA (Write Once Run Anywhere, traducere: Scrie odată rulează peste tot).  A fost lansat în anul 1995 iar de atunci a suferit o popularitate foarte mare, majoritatea aplicațiilor distribuite fiind scrise în Java, iar odată cu evoluția tehnologiei, limbajul de programare a devenit utilizat și la scrierea aplicațiilor mobile, agendelor telefonice, etc. Java este utilizat în prezent , având un real succes, și la programarea aplicațiilor destinate intranet-urilor. Astăzi, Java este unul dintre cele mai utilizate limbaje de programare, în special pentru aplicațiile web de tip client-server, având reportat un număr de 9 milioane de dezvoltatori.
 	
-Limbajul Java își însușește o mare parte din sintaxa limbajelor C și C++. Diferența dintre aceste limbaje este făcută în cadrul nivelului de jos al programării, Java având mai puține facilități , dar obiectul modelelor este de asemenea simplificat. Un program Java care este corect și care nu suferă modificări poate rula pe orice platformă care are instalată mașina virtuală Java(JVM care inseamnă Java Virtual Machine). Acest lucru este posibil deoarece codul scris în Java este compilat într-un format standard numit cod ce octeți( in engleză byte-code). Codul de octeți este de fapt un cod intermediar între codul mașină și codul sursă. Java Virtual Machine este disponibilă pentru toată lumea incepând din anul 2006, atunci când Sun a publicat un articol prin care anunțau că varianta companiei de JVM va fii open-source. Există și alți furnizori de JVM, printre care Oracle, IBM, Bea, FSF.
-	
+Limbajul Java își însușește o mare parte din sintaxa limbajelor C și C++. Diferența dintre aceste limbaje este făcută în cadrul nivelului de jos al programării, Java având mai puține facilități , dar obiectul modelelor este de asemenea simplificat. Un program Java care este corect și care nu suferă modificări poate rula pe orice platformă care are instalată mașina virtuală Java(JVM care inseamnă Java Virtual Machine). Acest lucru este posibil deoarece codul scris în Java este compilat într-un format standard numit cod ce octeți( in engleză byte-code). Codul de octeți diferă față de codul mașină. Codul mașină poate fi executat fără a mai fii prelucrat deoarece este reprezentat de o secvență de instrucțiuni specifice unui anumit tip de procesor și a unei platforme binare de lucru. Codul de octeți reprezintă instrucțiuni asemănătoare codului scris in limbaj de asamblare. Compilatorul generează codul de octeți independent de platforma de lucru. Codul mașină este executat direct de către procesor și va putea rula numai pe platforma pe care a fost creat, pe când codul de octeți va putea rula pe orice platformă care are instalat mediul de programare Java deoarece codul de octeți este interpretat întocmai de acest mediu de programare. 
+
+Java Virtual Machine este disponibilă pentru toată lumea incepând din anul 2006, atunci când Sun a publicat un articol prin care anunțau că varianta companiei de JVM va fii open-source. Există și alți furnizori de JVM, printre care Oracle, IBM, Bea, FSF.
+
+În funcție de modul de execuție a aplicaților, limbajele de programare se împart în două categorii:
+\begin{addmargin}[4em]{1em}
+	\begin{itemize}
+		\item Interpretate: un program numit interpretor citește instrucțiunile linie cu linie și le traduce în instrucțiuni mașină. Această soluție prezintă un avantaj mare datorită simplității și a portabilității. Portabilitatea este dată de faptul că sursa programului este interpretată direct. Viteza de execuție redusă este un dezavantaj evident pentru această categorie. Limbajul de programare Basic este, probabil, cel mai cunoscut limbaj interpretat.
+		\item Compilate: compilatorul transformă codul sursă al programelor în cod care poate fi executat direct de către procesor. Acest cod se numește cod mașină. Un avantaj îl constituie execuția extrem de rapidă, de cealaltă parte, lipsa portabilității este un dezavantaj important. Un cod de nivel scăzut nu va putea rula decât pe platforma de lucru pe care s-a executat procesul de compilare.  
+	\end{itemize}
+\end{addmargin}
+\bigbreak
+
+Caracteristicile principale ale limbajului de programare Java au făcut ca acesta să fie, într-un interval relativ scurt, unul dintre cele mai populare și utilizate limbaje de programare. Caracteristicile principale ale limbajului sunt:
+\begin{addmargin}[4em]{1em}
+	\begin{itemize}
+		\item Simplitate - supraîncărcarea operatorilor este eliminată, la fel și moștenirea multiplă și toate facilitățile care ar putea duce la scrierea unui cod confuz
+		\item Ușurința cu care sunt create aplicațiile complexe (interfața grafică, firele de execuție, baze de date,etc).
+		\item Robustețe - Renunțarea la pointeri duce la eliminarea unei surse foarte importante de erori, la fel și gestionarea automată a memoriei și eliminarea scurgerilor de memorie prin introducerea unei proceduri de colectare a obiectelor care nu mai sunt referite, procedura este numită "Garbage Collector".
+		\item	Orientare pe obiecte completă - programarea procedurală este eliminată complet.
+		\item Securitate - limbajul Java este unul foarte sigur deoarece furnizează mecanisme stricte de securitate (codul care verifică secvențele periculoase este verificat dinamic, atunci când se rulează procese la distanță sunt impuse niște reguli foarte stricte).
+		\item Neutralitate arhitecturală - arhitectura fizică a mașinii pe care rulează aplicația nu influențează comportamentul acesteia.
+		\item Portabilitate - independența față de platforma de lucru reprezintă un avantaj foarte mare pentru limbajul de programare și este o opțiune foarte bună pentru companiile dezvoltatoare de aplicații din cauza reducerii costurilor. Aplicațiile nu mai necesită recompilate și modificate la trecerea de la un sistem de operare pe altul.
+		\item	Este un cod compilat și interpretat, aceste două mari caracteristici definesc portabilitatea limbajului de programare.
+		\item Performanță - recunoscut pentru faptul că limbajul este mai lent decât cele care generează executabile native pentru o anumită platformă de lucru, performanța ridicată a codului de octeți este asigurată de compilatorul Java, astfel încât viteza mai scăzută nu reprezintă un impediment dezvoltării aplicațiilor complexe ( animații, grafică 3D).
+\end{itemize}
+\end{addmargin}
+\bigbreak	
 Oracle a furnizat pentru Java 4 platforme:
 \begin{addmargin}[4em]{1em}
 \begin{itemize}
@@ -28,13 +57,6 @@ Oracle a furnizat pentru Java 4 platforme:
 	\item Java Platform, Standard Edition(Java SE)- pentru sisteme gen workstation ( gasim la PC-uri)
 	\item Java Platform, Enterprise Edition(Java EE) – pentru sisteme de calcul mari
 \end{itemize}
-\end{addmargin}
-\bigbreak
-În funcție de modul de execuție a aplicaților, limbajele de programare se împart în două categorii:
-\begin{addmargin}[4em]{1em}
-	\begin{itemize}
-		\item Interpretate: un program numit interpretor citește instrucțiunile linie cu linie și le traduce în instrucțiuni mașină. Această soluție prezintă un avantaj mare datorită simplității și a portabilității. Portabilitatea este dată de faptul că sursa programului este interpretată direct. Viteza de execuție redusă este un dezavantaj evident pentru această categorie. Limbajul de programare Basic este, probabil, cel mai cunoscut limbaj interpretat.
-	\end{itemize}
 \end{addmargin}
 \bigbreak
 Mai multe versiuni au apărut de-a lungul timpului, și anume un număr de 9 versiuni. Acestea sunt :
@@ -98,5 +120,65 @@ Ca în C++ sau în alte limbaje de programare orientată obiect, variabilele tip
 
 Limbajul de programare Java conține diferite tipuri de colectoare de deșeuri (garbage collectors). În mod implicit, HotSpot foloseste “parallel scavenge garbage collector”. În orice caz, sunt multe alte colectoare de deșeuri care pot fi utilizate pentru administrarea memoriei heap. Pentru 90\%  din aplicațiile Java, este suficient utilizarea colectorului de deșeuri “Concurrent Mark-Sweep (CMS)”. Oracle tinde să înlocuiască colectorul de deșeuri CMS cu colectorul “Garbage First Collector (G1) “.
 
+Limbajul de programare Java folosește, în mod nativ, setul de caractere Unicode. Acesta este un standard internațional care a dus la înlocuirea codului ASCII ( vechiul set de caractere). In setul Unicode, caracterele sunt reprezentate cu ajutorul a 2 octeți ( față de codul ASCII unde se pot reprezentate numai 256 de caractere, setul Unicode suportă reprezentarea a unui număr maxim de 65536 de caractere). Primele 256 de caractere din setul Unicode sunt la fel ca și cele din codul ASCII. Pentru referirea celorlalte caractere se folosește sintaxa \%uxxxx, unde xxxx reprezintă codul caracterului. O caracteristică importantă a setului de date Unicode o reprezintă și faptul că întreg intervalul de reprezentare a simbolurilor este împărțit în subintervale, purtând denumirea de blocuri. Exemple de blocuri: Basic Latin, Gothic, Greek, Arabic, Arrows, Currency, Mathematical, Musical, etc. 
+
+Majoritatea cuvintelor rezervate în Java sunt aceleași ca și în limbajul de programare C++. Acestea nu pot reprezenta variabile sau metode, nume de clasă sau interfață. Cuvintele true, false, null nu reprezintă cuvinte cheie, dar nici ele nu pot fii folosite pe post de nume în dezvoltarea de aplicații Java. Cuvintele marcate cu * nu sunt folosite, dar sunt rezervate.\\
+\begin{center}
+	\includegraphics{CuvinteRezervate}
+\end{center}
+
+\section{MySQL}
+Un sistem de organizare a unei baze de date relaționale este o implementare necesară in foarte multe domenii, de la chestii tradiționale la afaceri, cercetări, contexte educaționale, la aplicații foarte puternice și complexe ( de exemplu, motoarele de căutare pe internet). În ciuda faptului că o bază de date este foarte importantă pentru a administra și accesa resursele informative, multe organizații s-au aflat în imposibilitatea financiară de a avea un asemenea sistem. De-a lungul timpului, sistemele de baze de date au fost o propunere destul de scumpă, furnizorii cerând sume importante de bani atât pentru partea de software cât și pentru partea de suport. Deoarece un sistem de baze de date necesită echipament hardware substanțial pentru a rula cu o performanță decentă, costul total a devenit și mai mare. 
+
+Situația este diferită în zilele noastre, atât din punct de vedere software cât și hardware. Sistemele micuțe desktop și serverele sunt ieftine și eficiente și este o dorintă arzătoare a companiilor dezvoltatoare să scrie sisteme de operare cât mai rapide pentru aceste instrumente. Aceste sisteme de operare sunt disponibile gratuit peste tot pe internet sau uneori la prețul unui CD ieftin. Ele includ și câteva derivate Unix BSD (FreeBSD, NetBSD, OpenBSD) la fel și multe distribuții ale sistemului de operare Linux (Fedora, Debian, Gentoo, Suse și multe altele).
+
+Producția de sisteme de operare gratuite a început odată cu dezvoltarea aplicațiilor gratuite ca și GCC, compilatorul GNU C. Aceste eforturi de a face software-ul disponibil oricui are nevoie de el fac parte din mișcarea Open Source. Proiectele Open Source au produs lucruri importante în industria software. De exemplu, Apache este cel mai utilizat server web pe internet. Perl, Python și Ruby sunt limbaje de scripting foarte utilizate și totodata foarte stabile, iar PHP este un limbaj care a devenit popular din cauza ușurinței cu care se pot scrie pagini web dinamice. Toate aceste lucruri sunt în contrast cu soluțiile aflate în proprietatea cuiva și au un preț foarte ridicat și nici măcar nu există accesul la codul sursă al acestor programe. 
+
+Software-ul pentru bazele de date a devenit și el mai accesibil iar sistemele Open Source de administrare a bazei de date sunt disponibile gratuit. Unul dintre acestea este MySQL, un sistem SQL de tip client-server utilizat la administrarea bazei de date relaționale și este originar din Scandinavia. MySQL include un server SQL, programe care să permită clientului să acceseze serverul SQL, programe administrative și interfețe pentru a scrie propriile programe.
+
+Rădăcinile MySQL au prins naștere în anul 1979, când Michael Monty Widenius de la compania suedeză TcX a creat o aplicație pentru baze de date numită UNIREG. În anul 1994, compania TcX a început să caute un sisteme de administrare a bazei de date relaționale cu o interfață SQL pentru a putea fi folosită în dezvoltarea aplicațiilor web. Au testat câteva servere comerciale, dar au descoperit doar faptul că erau prea lentru pentru tabelele foarte largi a companiei. De asemenea, au investigat și programul mSQL, dar acesta nu dispunea de multe proprietăți pe care compania TcX le-a marcat ca fiind necesare. 
+
+Prin urmare, Monty a început dezvoltarea unui nou sever. Interfața de programare a fost creată explicit să fie similară cu cea folosită de aplicația mSQL deoarece multe aplicații gratuite erau disponibile pentru mSQL, și folosind o interfață similară, toate acele aplicații gratuite puteau fii folosite și pentru MySQL cu un minimum efort de portabilitate, 
+
+În anul 1995, David Axmark de la compania Detron HB a început să îi stimuleze pe cei de la TcX să lanseze MySQL pe internet. David a lucrat, de asemenea, și la documentație și la posibilitatea ca MySQL să ruleze cu utilitățile GNU. MySQL 3.11.1 a fost lansat în toată lumea în anul 1996 sub forma unor distribuții binare pentru sistemele de operare Linus și Solaris. Astăzi, MySQL este disponibil în mult mai multe platforme atât sub formă binară cât și sub formă de cod sursă. Compania MySQL AB a fost formată pentru a pune la dispoziție distribuții MySQL atât pentru versiunea Open Source cât și pentru cele cu licență comercială și să ofere suport tehnic, servicii de monitorizare și training. În anul 2008, compania Sun Microsystemsa achiziționat compania MySQL AB ( angajamentul pentru versiunea Open Source a continuat să fie la fel de puternic deoarce planul companiei Sun era de a distribui majoritatea produselor lor sub forma Open Source).
+
+Inițial, MySQL a devenit popular la scară globală pentru viteza și simplitatea sa. MySQL nu a fost lipsit de critici, mai ales din cauza faptului că îi lipsea multe caracteristici printre care tranzacțiile și suport pentru cheia străină. MySQL a continuat să se dezvolte adăugând nu doar acele caracteristici lipsă cât și altele, printre care amintim replicațiile, subinterogările, procedurile stocate, vederi și trigerr-e (declanșatoare). Aceste capabilități au dus MySQL pe tărâmul aplicațiilor enterprise (aplicații care sunt destinate mai degrabă companiilor și nu utilizatorilor individuali). Ca și rezultat, oamenii care odată considerau aplicațiile de tip "big iron" (calculatoare foarte mari, foarte rapide dar și foarte scumpe) potrivite pentru implementarea unui sistem de baze de date, acum acordă foarte mare atenție MySQL. 
+
+MySQL este portabil și rulează pe sistemele de operare comerciale (cum ar fi Mac OS X, Windows, HP-UX) și pe dispozitive hardware până la rangul de sus, reprezentat de serverele companiilor foarte mari. Mai mult decât atât, performanța sa concurează cu peformanța oricărui sistem de baze de date și poate să găzduiască baze de date care conțin miliarde de rânduri. În domeniu afacerilor, MySQL continuă să își mărească prezența deoarece companiile descoperă că MySQL poate fi capabil să le gestioneze baza de date la o zecime de preț față de cât plăteau de obicei pentru licențele comerciale și suport.
+
+MySQL face parte din imaginea care se dezvoltă în spatele nostru încontinuu, și aceasta este: sisteme de operare gratis care rulează pe compenente hardware foarte puternice dar ieftine, punând puterea substanțială de procesare și capabilitățile în mâinile unor utilizatori individuali și ale unor afaceri, mai mult ca oricând, pe o varietate foarte largă de sisteme. Această coborâre a barierelor economice în domeniul calculatoarelor a făcut ca soluțiile foarte rapide de baze de date să ajungă la mai mulți oameni și la mai multe organizații decăt oricând altcândva. Organizațiile care doar visau să aibă un sisteme de administrare a unei baze de date relaționale, pot face acest lucru la un cost foarte scăzut. Acest lucru este adevărat și pentru utilizatori individuali.
+
+Multe sisteme de administrare a bazei de date sunt disponibile gratuit sau la un cost foarte mic, printre care MySQL, PostgreSQL sau SQLite. Atunci când comparăm MySQL cu alte sisteme de acest tip trebuie să ne gândim la cele mai importante lucruri: performanță, suport, caracteristici disponibile, condiționare și restricționare a licenței și preț. Luând toate acestea în considerare, MySQL are foarte multe lucruri atrăgătoare de oferit:
+\begin{addmargin}[4em]{1em}
+\begin{itemize}
+	\item Viteza. MySQL este foarte rapid. Dezvoltatorii acestui sistem susțin că este cel mai rapid sistem de administrare a bazei de date relaționale. 
+	\item Ușor de utilizat. MySQL este foarte performant dar relativ simplu și este mult mai puțin complex de setat și administrat decât sistemele mai mari.
+	\item Suport pentru interogări. MySQL întelege limbajul SQL (Structured Query Language), limbajul standard pentru sistemele de baze de date moderne.
+	\item Capabilitate. Serverul MySQL este multi-thread (mai mult fire de execuție) ața că mai mulți clienți pot să pot să se conecteze la el în același timp. Fiecare client poate să folosească mai multe baze de date în același timp. Accesarea serverului se poate realiza interactiv folosind diferite interfețe care permit adăugarea de interogări și vizualizarea de operații: clienți din linia de comandă, browser-e web sau aplicații grafice. În completare, interfețe de programare sunt disponibile pentru multe limbaje, de exemplu: C, Perl, Java, PHP, Python și Ruby. Putem să accesăm MySQL și cu ajutorul aplicațiilor care suportă ODBC și .NET (protocoale dezvoltate de Microsoft). Acest lucru ne dă posibilitatea de a scrie prepachetele noastre pentru client în vederea accesării informațiilor din baza de date.
+	\item Conectivitate si securitate. MySQL este complet de tip rețea iar bazele de date pot fi accesate de oriunde există conexiune la internet, deci poți să împărtășești datele cu oricine, oriunde. Dar, în același timp, MySQL controlează accesul la informație așa încât o persoană care nu are dreptul de a vizualiza conținutul bazei de date nu va putea face acest lucru. Ca să ofere securitate și mai mare, MySQL suportă conexiuni criptate folosind protocolul SSL (Secure Sockets Layer).
+	\item Portabilitate. MySQL rulează pe o varietate foarte mare de sisteme de operare de tip Unix și Linux, la fel și pe alte sisteme cum ar fii Windows și NetWare. MySQL rulează pe echipamente hardware de la servere foarte mari până la dispozitive care încap în palmă. 
+	\item Spațiu redus. MySQL este distribuit pe o dimensiune redusă, mai ales comparativ cu uriașele discuri de stocare ale altor sisteme de baze de date.
+	\item Disponibilitate și cost. MySQL este un proiect disponibil de tip Open Source sub mai multe licențe. În primul rând, este disponibil sub licența celor de la GNU General Public License (GPL). Acest lucru însemnând că MySQL este disponibil fără niciun cost pentru majoritatea operațiilor necesare. În al doilea rând, organizațiile care preferă aranjamentele formale sau nu vor să fie legate de condițiile de licențiere a celor de la GPL, licențele comerciale sunt disponibile.
+	\item Distribuție deschisă și codul sursă. MySQL este foarte ușor de obținut. Trebuie doar să folosești browserul web. Dacă nu înțelegem cum funcționează o caracteristică sau vrem să facem un audit de securitate, putem să obținem codul sursă și să îl examinăm. Dacă utilizatorul care inspectează codul sursă găsește ceva in neregulă, este recomandat să raporteze această eroare pentru a putea fi corectată.
+\end{itemize}
+\end{addmargin}
+\bigbreak
+Distribuția MySQL include următoarele unelte:
+\begin{addmargin}[4em]{1em}
+\begin{itemize}
+\item Un server SQL. Acesta este motorul care pornește MySQL și oferă acces la baza de date.
+\item Programul pentru client și pentru alte utilizări. Acestea includ un program interactiv pentru client care permite acestuia să introducă direct interogările și să vizualizeze rezultatele. De asemenea sunt disponibile mai multe programe administrative care te ajută să rulezi MySQL împreună cu site-ul tău: un program permite administratorului să monitorizeze și să controleze serverul, alte programe permit acestuia să importe date, să își salveze datele la un interval de timp (proces numit back-up), să verifice tabelele de probleme și multe alte chestii.
+\item O librărie pentru client care să îi permită să scrie propriile programe. Se pot scrie programe client în limbajul C deoarece librăria este creată în C. Librăria poate fi corelată cu alte limbaje de programare precum Perl, PHP, Ruby pentru a oferi serviciile de bază pentru intefețele MySQL.
+\end{itemize}
+\end{addmargin}
+\bigbreak
+Adițional software-ului disponibil împreună cu MySQL, MySQL este utilizat de mulți oameni talentați și capabili cărora le place să scrie software pentru a-și mări productivitatea și care sunt disponibili să împărtășească acest program. Rezultatul este unul benefic, accesul la o varietate largă de unele care fac MySQL să fie mai ușor de utilizat sau de integrat în diferite arii, cum ar fi dezvoltarea de site-uri web. 
+
+\section{Hibernate}
+Majoritatea proiectelor de dezvoltare software implică cel puțin o bază de date relațională. Baza majorității aplicațiilor comerciale este reprezentată de informație ordonată la scară mare, de exemplu: cataloage, liste de clienți, detalii de contracte, texte plublicate sau design arhitectural.
+
+Odată cu apariția World Wide Web ( rețea largă internațională), cererea pentru baze de date a crescut considerabil. Chiar dacă poate nu știu, clienții unei librării online, de exemplu, sau a unui ziar online necesită folosirea unei baze de date pentru stocarea lor. Undeva în adâncul aplicației, o bază de date este interogată și un răspuns al acesteia este oferit. 
+
+Hibernate este o librărie care simplifică utilizarea bazelor de date relaționale în aplicațiile realizate cu ajutorul limbajului de programare Java. Acest lucru este posibil reprezentând datele relaționale ca fiind simple obiecte, accesate în urma unei sesiuni. Hibernate prezintă două tipuri de interfete programabile: o interfață nativă Hibernate și The Java EE-standard Java Persistence API. 
 
 \end{document}
