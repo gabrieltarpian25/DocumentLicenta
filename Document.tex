@@ -181,4 +181,110 @@ Odată cu apariția World Wide Web ( rețea largă internațională), cererea pe
 
 Hibernate este o librărie care simplifică utilizarea bazelor de date relaționale în aplicațiile realizate cu ajutorul limbajului de programare Java. Acest lucru este posibil reprezentând datele relaționale ca fiind simple obiecte, accesate în urma unei sesiuni. Hibernate prezintă două tipuri de interfete programabile: o interfață nativă Hibernate și The Java EE-standard Java Persistence API. 
 
+Sunt situații în care utilizarea Hibernate este foarte utilă, dar sunt și situații pentru care abordarea tradițională reprezentată prin accesul direct via The Java Database Connectivity (JDBC) Api este recomandată. Totuși, Hibernate rămâne favorită pentru prima opțiune deoarece nu exclude nici folosirea simultană a mai multor abordări, deși trebuie avută foarte mare grijă atunci când datele sunt modificate cu ajutorul a două API-uri diferite.
+
+Dacă Hibernate este o soluție, atunci care este problema? Un răspuns la această întrebare comună ar fi faptul că atunci când facem exact aceleași lucruri folosing JDBC, avem nevoie de o cantitate considerabilă de cod și de observarea atentă a diferitelor reguli (de exemplu, administrarea conexiunilor) ca să ne asigurăm că aplicațiia noastră nu produce o scurgere de resurse. 
+
+	
+
+Într-o lume ideală ar fi neimportant să luăm orice obiect Java și să îl persistăm (continuăm) într-o bază de date. Nicio introducere de cod nou nu va fi necesară pentru a realiza această caracteristică, nu vor apărea nici penalități de performanță iar rezultatul va fi portabil în totalitate. În această lume ideală probabil că vom realiza operația respectivă în următorul mod:\\
+POJO pojo = new POJO();\\
+ORMSolution magic = ORMSolution.getInstance();\\
+magic.save(pojo);\\
+Nu vor apărea surprize neplăcute, nu va fi nevoie de muncă în plus pentru a corela clasele cu tabelele bazei de date iar performanța nu va afectată.
+
+Hibernate este foarte aproape de această lume ideală, cel puțin atunci când este comparată cu celelalte alternative, dar este nevoie de crearea unor fișiere de configurare și trebuie luate în calcul și problemele de performanță și sincronizare. Hibernate, în orice caz, își atinge scopul fundamental: permiterea stocării de obiecte de tip POJO (Plain Old Java Object) în baza de date. 
+
+Termenul comun pentru persistența directă a obiectelor Java este "obiect/ mapare relațională", care înseamnă maparea obiectelor Java direct la entitățile relaționale ale unei baze de date. Următoarea imagine arată modul în care Hibernate se mulează într-o aplicație, de la codul clientului și până la baza de date:
+\begin{center}
+	\includegraphics{Hibernate}
+\end{center}
+
+Comparativ cu JDBC, Hibernate furnizează o administrare a resurselor mai curată, acest lucru însemnând faptul că nu mai trebuie să ne îngrijorăm de conexiunile actuale ale bazei de date sau de a introduce blocuri gigantice de cod de tipul "try/catch/finally".
+Totuși, erorile nu vor dispărea, doar că nu va mai trebui să ne ocupăm noi de ele. În orice caz, aceste condiții sunt excepționale (adică ne ocupăm doar de excepțiile de care trebuie să ne ocupăm, nu de fiecare excepție care ar necesita tratament).
+
+Hibernate manipulează maparea obiectelor la tabelul bazei de date incluzând construirea schemei bazei de date dacă o configurăm să facă acest lucru. Nu necesită construirea unui tabel pentru fiecare tip de obiect, putem să mapăm foarte ușor un obiect la mai multe tabele. Și, de asemenea, Hibernate administrează și relațiile dintre obiecte, de exemplu: dacă am adăugat o listă de adrese unei persoane, putem foate ușor să avem adresele stocate intr-un al doilea tabel, construit și organizat de Hibernate.
+
+În plus față de maparea obiectelor la tabelul unei baze de date, Hibernate poate să gestioneze mapările unor tipuri noi la baza de date. 
+
+Pornirea Hibernate durează puțin mai mult decât codul direct JDBC. Oricum, timpul de inițializare a sistemului nu este o măsură foarte semnificativă. Majoritatea aplicațiilor au perioade foarte lungi de rulare iar procentul de timp petrecut în procesul de inițializare a librăriei Hibernate este nesemnificativ comparativ cu performanța actuală a aplicațiilor. Avantajele Hibernate în întreținerea și administrarea obiectelor mai mult decât compensează timpul utilizat în configurare și inițializare. Ca de obicei, cel mai bun mod de a evolua performanțele unei aplicații este de a testa și a analiza aplicația propriu-zisă.
+
+Orice obiect Java capabil de a fi persistat la o bază de date este un candidat pentru a fi persistat cu ajutorul Hibernate. Prin urmare, Hibernate este o înlocuire naturală pentru soluțiile ad-hoc (ca și JDBC de examplu) sau un motor de persistare pentru o aplicație care nu are deja încorporată o bază de date. În plus, prin alegerea Hibernate, utilizatorul nu este legat de nicio decizie (schimbarea designului, de exemplu) pentru obiectele aflate în aplicație, incluzând care bază de date să fie folosită pentru Hibernate.
+
+După cum era de așteptat, Hibernate are nevoie de cineva să îi spună care tabel corespunde cărui obiect. În limbajul Hibernate, acest proces este numit mapare. Mapările pot fi implementate prin adnotări Java sau cu ajutorul unui fișier de mapare XML. Adnotările sunt preferate de majoritatea dezvoltatorilor deoarece oferă o imagine clară a structurii chiar la nivelul de cod. Hibernate dispune și de o abordare de tipul "configurare prin excepție" pentru adnotări: dacă suntem mulțumiți cu valorile pe care Hibernate ni le prezintă, nu mai trebuie să le precizăm explicit cu ajutorul adnotărilor. Pentru instanțe, Hibernate folosește numele clasei POJO ca și valoarea implicită a tabelului bazei de date pentru care se realizează maparea. De fapt, dacă accesul la baza de date se realizează doar prin intermediul Hibernate, nu trebuie să știm numele tabelului. Acest lucru este posibil deoarece interogările Hibernate se realizează pe tipul obiectului și nu pe numele tabelului. Hibernate construiește automat interogarea în așa fel încât este folosit numele corect al tabelului, chiar dacă ulterior schimbăm numele tabelului. 
+
+Integrarea Hibernate în aplicația Java se realizează relativ ușor. Designer-ii Hibernate au evitat câteva dintre cele mai comune capcane și probleme care existau cu soluțiile persistenței Java și au creat o arhitectură curată și puternică în același timp. Practic, acest lucru înseamnă că nu e nevoie să rulăm Hibernate în interiorul unui container sau schelet Java EE. Rularea Hibernate necesită doar instalarea versiunii Java 6 sau versiuniile următoare.
+
+La început, adăugarea Hibernate în proiectul Java poate să intimideze utilizatorul deoarece distribuția include un set foarte mare de librării. Pentru a avea prima aplicație Hibernate, trebuie setate referințele bazei de date și configurările Hibernate, care pot include maparea obiectelor la baza de date. De asemenea, trebuie creată și clasa de tip POJO împreună cu toate adnotările folosite în procesul de mapare. După ce au fost făcute toate acestea de mai sus, trebuie scrisă partea logică din spatele aplicației care utilizează Hibernate în vederea obținerii unor rezultate. Odată ce procesul de integrare Hibernate într-o aplicație Java este înțeles, chestiile de bază se aplică pentru orice proiect care folosește Hibernate.
+
+Una dintre caracteristicile cheie a Hibernate este faptul că Hibernate nu interferează cu aplicația Java mai mult decât este nevoie, acest lucru a fost posibil datorită designer-ilor care au creat Hibernate. 
+
+Pentru a configura și integra Hibernate este necesar parcurgerea următorilor pași:
+\begin{addmargin}[4em]{1em}
+	\begin{enumerate}
+	\item Identificarea claselor de tip POJO care trebuie reprezentate cu ajutorul bazei de date.
+	\item Indentificarea proprietăților clasei POJO care trebuie persistate (mapate)
+	\item Adnotarea fiecărei proprietăți pentru a mapa obiectele Java la numele coloanelor bazei de date
+	\item Crearea schemei bazei de date folosing unealta pentru exportarea schemei, folosind o bază de date actuală sau crearea propriei scheme a bazei de date.
+	\item Adăugarea librăriilor Hibernate în aplicația Java.
+	\item Crearea unui fișier XML de configurare Hibernate care indică spre baza de date și spre clasele mapate acesteia.
+	\item În aplicația Java, trebuie creat un obiect de tip Hibernate Configuration care face referire la fișierul de configurare XML.
+	\item Tot în aplicația Java, trebuie creat un obiect de tipul Hibernate SessionFactory din obiectul Configuration.
+	\item Restabilește obiectele de tip HibernateSession din sesiunea FactorySession și scrie datele pentru accesul logic al aplicației ( crează, șterge, actualizează,etc).
+\end{enumerate}
+\end{addmargin}
+
+Utilizatorul poate chema Hibernate direct din aplicația Java sau poate accesa Hibernate prin intermediul unei alte arhitecturi. Putem chema Hibernate prin intermediul unei aplicații de tip Swing, unui servlet, portlet, unei pagini JSP sau prin intermediul oricărei aplicații Java care are acces la o bază de date. De obicei, vom utiliza Hibernate pentru a crea un înveliș pentru accesul de date al aplicației sau pentru a înlocui un înveliș existent.
+
+Hibernate suportă Java Management Extensions (JMX), J2EE Connector Architecture (JCA) și Java Naming and Directory Interface (JNDI). Folosing JMX, putem configura Hibernate în timp ce rulează. Hibernate poate fi lansat ca un conector de tip JCA și putem utiliza JNDI pentru a obține sesiunea curentă Hibernate. Adițional, Hibernate folosește driverele standard JDBC pentru a accesa baza de date relațională. Hibernate nu înlocuiește JDBC ca fiind un strat de conectivitate la baza de date. Hibernate stă cu un nivel mai sus de JDBC. 
+
+Adițional standardului JAVA APIs, majoritatea aplicațiilor Java de tip web integrează Hibernate. API-urile simple și curate Hibernate fac integrarea Hibernate ușor de suportat într-un fel sau altul. Scheletul Spring distribuie un excelent mod de a integra Hibernate, incluzând suport generic pentru obiectele persistente, un set generic de excepții și o administrare a tranzacțiilor.
+
+Neținând cont de mediul în care este integrat Hibernate, anumite cerințe rămân constante. Trebuie definite detaliile configurației care se aplică. Aceste detalii sunt reprezentate, în pasul următor, de un obiect de tip Configuration. De la acest obiect se crează un singur obiect de tipul SessionFactory. De la acest obiect, obiectele de tip Session sunt instanțiate, obiecte prin care aplicația accesează reprezentarea Hibernate a bazei de date. 
+
+\section{Apache PDFBox}
+
+Librăria Apache PDFBox este o librărie pentru limbajul de programare Java de tip Open Source care lucrează cu documentele de tip PDF. Această librărie permite crearea de documente noi de tip PDF, manipularea documentelor existente cât și abilitatea de a extrage conținutul documentelor. Apache PDFBox include, de asemenea, importante utilități pentru linia de comandă. Apache PDFBox este publicat sub licența Apache License v2.0
+
+Apache PDFBox conține următoarele componente:
+\begin{addmargin}[4em]{1em}
+	\begin{itemize}
+		\item PDFBox: partea de bază
+		\item FontBox: se ocupă cu informațiile despre fonturi
+		\item XmpBox: se ocupă de metadatele de tip XMP
+		\item Prefligh (componentă opțională): verifică fișierele PDF în conformitate cu standardul PDF\%-1a 
+\end{itemize}
+\end{addmargin}
+
+Dezvoltarea PDFBox a început în anul 2002 în cadrul companiei SourceForge de către Ben Litchfield care a vrut să extragă textul din fișierele PDF pentru librăria Lucene. A devenit parte a proiectului Apache Incubator în anul 2008 iar în anul 2009 a ajuns unul dintre proiectele de top ale companiei. În anul 2015, ApachePDFBox a fost numit partener a organizației Open Source Partner Organization de către PDF Association.
+
+Una dintre caracteristicile importante a librăriei Apache PDFBox este aceea de a extrage rapid și precis text dintr-o varietate de documente de tip PDF. Această funcționalitate este încapsulată în org.apache.pdfbox.util.PDFTextStripper și poate fii executat foarte ușor din linia de comandă. 
+
+Lucene este o librărie de căutare a textului de tip Open Source făcând parte din proiectul Apache Jakarta Project. Pentru ca Lucene să poată indexa un document PDF, trebuie prima dată să fie convertit sub formă de text. PDFBox dispune de o abordare simplă pentru a adăuga documentele PDF într-un index Lucene.\\
+\\
+Document luceneDocument = LucenePDFDocument.getDocument( ... );\\
+
+După ce s-a creat obiectul de tip Lucene Document, poate fii adăugat la indexul Lucene în același mod ca și când ar fi fost creat dintr-un fișier text sau HTML. LucenePDFDocument extrage automat o varietate de câmpuri de metadate din fișierul PDF care sunt adăugate indexului Lucene, javadoc afișând detaliile în acele câmpuri. Această abordare este foarte simplă și este suficientă pentru majoritatea utilizatorilor, în caz contrar se pot utiliza tehnici mai avansate de extragere a textului.
+
+Unele aplicații conțin cerințe mai complexe de extragere a textului, nici linia de comandă sau LucenePDFDocument nu pot îndeplinească acele cerințe. Este posibil ca utilizatorul să utilizeze sau să extindă clasa PDFTextStripper pentru a satisface o parte din cerințele respective. 
+
+Există destule moduri de a limita textul care este extras în timpul procesului de extragere. Cel mai simplu mod este de a specifica intervalul de pagini din care să se extragă textul. 
+
+Extragerea textului în limbile ale căror conținut merge de la dreapta la stânga  (Arabă sau Ebraică, de exemplu) poate să rezulte în text care ordinea literelor este inversată. PDFBox poate să normalizeze și să inverseze acest text cu ajutorul fișierului de tip jar ICU4J. Trebuie de asemenea activată sortarea folosing org.apache.pdfbox.util.PDFTextStripper sau org.apache.pdfbox.ExtractText pentru a asigura un text de calitate.
+
+Există mai multe librării de procesare a fișierelor PDF, printre care amintim Adobe PDF Library, iText, JPedal, PDFTron Systems,etc. Cea mai populară librărie este iText.
+Există o întreagă dezbatere pe tema "Care librărie este mai bună dintre PDFBox sau iText?", de aceea vom face o comparație între cele două:
+\begin{addmargin}[4em]{1em}
+	\begin{itemize}
+\item O diferență majoră o constituie faptul că PDFBox procesează textul simbol cu simbol pe când iText procesează textul ca fiind un simplu string. Acest lucru reduce semnificativ numărul de resurse folosite de librăria iText. 
+\item Arhitectura orientată pe evenimente a librăriei iText atunci când parcurge un text înseamnă o povară mai mică pentru resursele iText față de resursele PDFBox.
+\item PDFBox stochează informațiile, care nu sunt necesare pentru extragerea textului, pentru o perioadă mai lungă de timp. Acest lucru este posibil datorită utilizarea mai multor resurse.
+\item Modul în care librăriile încarcă documentul este, de asemenea, o diferență. PDFBox oferă multiple moduri de supraîncărcare a funcției PDFDocument.loads dar și a funcției PDFDocument.loadNonSeq. 
+\item iText dispune de o strategie mai simplă și mai avansată a parcurgerii unui text. Cea mai simplă strategie presupune ca textul să apară în ordinea citirii pe când cea mai avansată presupune sortarea textului. Librăria PDFBox sortează mereu textul. 
+\item În ciuda dezavantajelor clare, PDFBox este recomandată atunci când manipularea fișierelor de tip PDF este minimă, iText având mult mai multe funcții și îngreunează puțin conținutul aplicației. Acest lucru m-a determinat să aleg și eu librăria PDFBox pentru a manipula textul din fișierele de tip PDF. 
+\end{itemize}
+\end{addmargin}
+
+
+
 \end{document}
