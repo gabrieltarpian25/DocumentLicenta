@@ -1,0 +1,21 @@
+1. Introducere
+-movitare
+-sfotware existente care fac acest lucru
+-structura lucrare
+
+2.Telogie
+- Java
+- PDF parsere - ce folosesti tu + comparatii alte biblioteci
+- Hibernate (JDBC)
+- Swing (swing vs awt vs...)
+
+3. Aplicatia
+- descriere
+- use case diagram
+- DB structure (justifici DB ales - Mysql)
+- Fiecare functionalitate desisa
+
+4. Concluzii
+-motivare si ce ai implementat
+-dificultatii
+-future work
