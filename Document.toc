@@ -1,0 +1,13 @@
+\select@language {romanian}
+\contentsline {chapter}{\numberline {1}Introducere}{5}
+\contentsline {section}{\numberline {1.1}Motivare}{5}
+\contentsline {section}{\numberline {1.2}Software existente}{6}
+\contentsline {chapter}{\numberline {2}Tehnologii folosite}{7}
+\contentsline {section}{\numberline {2.1}Java}{7}
+\contentsline {section}{\numberline {2.2}MySQL}{14}
+\contentsline {section}{\numberline {2.3}Hibernate}{18}
+\contentsline {section}{\numberline {2.4}Apache PDFBox}{22}
+\contentsline {chapter}{\numberline {3}Aplica\IeC {{\textcommabelow t}}ia}{25}
+\contentsline {section}{\numberline {3.1}Descriere}{25}
+\contentsline {section}{\numberline {3.2}Diagrama de tip Use Case}{26}
+\contentsline {chapter}{\numberline {4}Concluzii}{27}
