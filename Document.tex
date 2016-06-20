@@ -327,6 +327,35 @@ Există o întreagă dezbatere pe tema "Care librărie este mai bună dintre PDF
 \end{itemize}
 \end{addmargin}
 
+\section{Selenium Remote Control}
+
+Selenium Remote Control este o librărie destinată automatizării cu interfața grafică, permițând programatorilor și tester-ilor să automatizeze interacțiunea cu o aplicație de tip WAUT (Web Application Under Test). Automatizarea este posibilă cu ajutorul librăriilor distribuite de Selenium care au suport în mai multe limbaje de programare.
+
+În termeni de design, Selenium RC folosește limbajul generic JavaScript numit Selenium Core. Totuși, pentru a utiliza limbajul generic JavaScript pentru ca aplicațiile WAUT să fie compatibile cu orice browser, trebuie să respecte o anumită poliță de securitate numită Same-Origin Policy. Fiecare browser impune această poliță site-urilor care sunt încărcate cu ajutorul lui. 
+
+Pentru fiecare website care este încărcat, browserul crează separat un mediu de testare pentru JavaScript-ul site-ului, care restricționează limbajul JavaScript să fie executat numai în domeniul site-ului respectiv. În acest fel, un JavaScript care aparține unui domeniu nu poate să execute comenzi pe un alt site care este încărcat în browser. Această vulnerabilitate a securității, mai este denumită și Cross-site scripting, este de datoria browserului să o restricționeze. Revenind la Selenium, browserul nu permite limbajului generic JavaScript să fie executat pe un site (aplicație WAUT) care vine dintr-un domeniu diferit.
+
+Ca să depășească această restricție de securitate, Selenium RC se comportă ca un server proxy HTTP. Când scriptul de test cere lansarea unui browser, serverul Selenium RC pornește browser-ul și îi introduce codul său JavaScript (Selenium Core). Toate cererile ulterioare pentru aplicația WAUT vor trece prin serverul Selenium RC și vor ajunge la serverul actual care găzduiește aplicația WAUT. \cite{SeleniumBook}
+
+În mod normal, Selenium funcționează în felul următor:
+\begin{addmargin}[4em]{1em}
+	\begin{enumerate}
+		\item Testerul sau programatorul, prin intermediul scriptului de test, poate să comande serverul Selenium să execute diferite operații pe aplicația WAUT 	într-un anumit browser. Modul în care utilizatorul comandă serverul Selenium este prin intermediul librăriilor distribuite de Selenium. Aceste librării sunt distribuite în diferite limbaje de programare, printre care amintim Java, Ruby, Python, PHP, etc. Un test de script va conține un set de comenzi pentru a testa diferite scenarii ale aplicației WAUT. 
+		\item Odată ce serverul Selenium a primit comanda de la script, va lansa browserul preferat de scriptul de test și, în timp ce browserul se lansează, va injecta Selenium Core în browser.
+		\item La încărcarea în browser, Selenium Core execută toate comenzile din scriptul de test. Browserul nu restricționează aceste comenzi deoarece Selenium Core și aplicația WAUT sunt tratate ca și parte din același domeniu.
+		\item Urmează partea HTTP proxy a serverului Selenium. Toate cererile și răspunsurile browserului pentru aplicația WAUT sunt direcționate la serverul web actual prin intermediul serverului Selenium, deoarece browserul crede că Selenium este parte a aplicației WAUT. 
+		\item După executarea scriptului, Selenium va trimite rezultatele înapoi la script pentru a fi analizate de către persoana în cauză.\cite{SeleniumBook}
+	\end{enumerate}
+\end{addmargin}
+
+Pentru a inițializa un driver avem nevoie să declarăm un profil al browserului și să creem driverul având preferințele profilului respectiv.\\
+WebDriverWait wait;\\
+WebDriver driver;\\
+File pathToBinary = new File("/Applications/Firefox.app/Contents/MacOS/firefox"); \\
+FirefoxBinary ffBinary = new FirefoxBinary(pathToBinary); \\
+FirefoxProfile firefoxProfile = new FirefoxProfile(); \\
+driver = new FirefoxDriver(ffBinary, firefoxProfile);\\
+wait = new WebDriverWait(driver, 20);
 \chapter{Aplicația}
 \section{Descriere}
 
@@ -346,21 +375,24 @@ O factură poate fi ștearsă din baza de date cu ajutorul butonului "Șterge fa
 
 Utilizatorul poate să genereze rapoarte ( detalii despre câți bani s-au cheltuit în total pe telefonie, electricitate, cât s-a cheltuit în fiecare an pentru fiecare categorie și așa mai departe). Rapoartele sunt generate prin apăsarea butonului "Generează rapoarte".
 
-Diagrama de tip Use Case este sugestivă pentru operațiile care pot fi efectuate de către utilizator:
-\begin{center}
+Diagrama de tip Use Case (Figura 3.1) este sugestivă pentru operațiile care pot fi efectuate de către utilizator.
+
+\begin{figure}[!ht]
+	\centering
 	\includegraphics{UseCaseDiagram}
-\end{center}
+	\caption{Diagrama de tip Use Case}
+\end{figure}
 
 \section{Descrierea funcționalităților}
 
-Baza de date aleasă este MySQL. Ea conține un tabel denumit "Factură" și la care este mapată, cu ajutorul adnotărilor (Hibernate), clasa Java cu numele de "Factură". Tabelul conține 9 câmpuri utilizate pentru stocarea facturilor. Câmpurile sunt:
+Baza de date aleasă este MySQL. Ea conține un tabel denumit "Factură" și la care este mapată, cu ajutorul adnotărilor (Hibernate), clasa Java cu numele "Factură". Tabelul conține 9 câmpuri utilizate pentru stocarea facturilor. Câmpurile sunt:
 \begin{addmargin}[4em]{1em}
 	\begin{itemize}
 		\item Id - stochează id-ul unei facturi și se autoincrementează de fiecare dată când se introduce o nouă factură în baza de date
 		\item Utilitate - stochează tipul de utilitate al facturii respective (de exemplu: Telefonie, Gaze naturale, etc).
 		\item Companie - stochează numele companiei pentru factura curentă (de exemplu: Orange, E-ON, etc).
-		\item Data emiterii - stochează data în care s-a emis factura respectivă
-		\item Data scadentă - stochează data la care factura respectivă devine scadentă ( data până la care se poate plăti factura, după această dată plata va fi posibilă dar se vor plăti și taxele de întârziere)
+		\item Data emiterii - stochează data la care s-a emis factura respectivă
+		\item Data scadentă - stochează data la care factura respectivă devine scadentă ( data până la care se poate plăti factura, după această dată, plata va fi posibilă dar se vor plăti și taxele de întârziere)
 		\item Numărul facturii - stochează numărul facturii curente
 		\item Status - stochează informația dacă o factură este plătită sau nu
 		\item Total de plată - suma totală de plată pentru factura respectivă
@@ -368,7 +400,7 @@ Baza de date aleasă este MySQL. Ea conține un tabel denumit "Factură" și la 
 	\end{itemize}
 \end{addmargin}
 
-Tabelul a fost creat prin introducerea unei sintaxe de tip SQL. Sintaxa respectivă este:\\\\
+Tabelul a fost creat prin introducerea unei sintaxe de tip MySQL. Sintaxa respectivă este:\\\\
 CREATE TABLE 'Factura' (\\
 'id' bigint(20) NOT NULL AUTO\_INCREMENT,\\
 'UTILITATE' varchar(20) DEFAULT NULL,\\
@@ -382,27 +414,33 @@ CREATE TABLE 'Factura' (\\
 PRIMARY KEY (`id`)\\
 ) ENGINE=InnoDB AUTO\_INCREMENT=55 DEFAULT CHARSET=latin1;\\
 
-Fereastra principală este alcătuită dintr-un JFrame care înglobează mai multe elemente (JTable, JButton, JPanel, Font). Aceste elemente sunt declarate după cum urmează:
-\begin{center}
-	\includegraphics{FereastraPrincipala}
-\end{center}
+Fereastra principală este alcătuită dintr-un JFrame care înglobează mai multe elemente (JTable, JButton, JPanel, Font) (Figura 3.2).
 
-De asemenea, mai conține trei variabile de tip boolean care marchează tipul de acțiune selectat la apăsarea unui buton. Aceste variabile sunt definite după cum urmează și cu ajutorul lor se realizează operațiile de adăugare, descărcare și achitare a unei facturi.
-Aceste variabile sunt definite după cum urmează:
-\begin{figure}[h]
+\begin{figure}[!ht]
+	\centering
+	\includegraphics{FereastraPrincipala}
+	\caption{Declararea elementelor ferestrei principale}
+\end{figure}
+
+De asemenea, mai conține două variabile de tip boolean care marchează tipul de acțiune selectat la apăsarea unui buton. Cu ajutorul lor se realizează operațiile de adăugare, descărcare și achitare a unei facturi. (Figura 3.3)
+
+\begin{figure}[!ht]
 	\centering
 	\includegraphics{VariabileAjutatoare}
 	\caption{Variabilele ajutătoare}
 \end{figure}
 
-Atunci când aplicația rulează, practic rulează fereastra principală. De aici utilizatorul poate să aleagă ce să facă mai departe. Fereastra principală este redată în imaginea următoare:
-\begin{center}
+Atunci când aplicația rulează, practic rulează fereastra principală. Facturile care sunt plătite se vor afișa cu culoarea verde iar cele care nu sunt plătite se vor afișa cu culoarea roșie (Figura 3.4).
+
+\begin{figure}[!ht]
+	\centering
 	\includegraphics{FereastraPrincipalaVizualizare}
-\end{center}
+	\caption{Vizualizarea grafică a ferestrei principale}
+\end{figure}
 
-Butonului "Adauga Factura" îi este adăugat o acțiune de tipul ActionListener care se declanșează în momentul apăsării acestuia. ActionListener-ul va seta cu valoarea TRUE variabila "boAdaugaFactura" și va rula fereastra unde sunt afișate toate companiile.
+Butonului "Adaugă Factura" îi este adăugat o acțiune de tipul ActionListener care se declanșează în momentul apăsării acestuia. ActionListener-ul va seta cu valoarea TRUE variabila "boAdaugaFactura" și va rula fereastra unde sunt afișate toate companiile.
 
-Fereastra "Companii" (figura xx.xx) este alcătuită din 6 butoane, un buton pentru fiecare companie. Imaginile de fundal ale butoanelor sunt reprezentate de siglele companiilor. Fiecare companie are asociat un buton care la rândul lui are selectat ca și imagine de fundal sigla companiei respective. Fiecare buton are, de asemenea, mapat un ActionListener pentru tratarea evenimentului de apăsare a acestuia.  În momentul apăsării unui buton (alegerea unei companii) se verifică opțiunea selectată anterior, adică opțiunea de adăugare (variabila "boAdaugaFactura" are valoare TRUE) sau opțiunea de descărcare (variabila "boDescarcaFactura" are valoarea TRUE). Dacă opțiunea de adăugare a unei facturi este cea selectată, un element de tipul JFIleChooser (Figura xx.xx) va apărea pe ecran, acesta permițându-ne să alegem fișierul de tip PDF pe care vrem să îl introducem în baza de date. 
+Fereastra "Companii" (Figura 3.5) este alcătuită din 6 butoane, un buton pentru fiecare companie. Imaginile de fundal ale butoanelor sunt reprezentate de siglele companiilor. Fiecare companie are asociat un buton care la rândul lui are selectat ca și imagine de fundal sigla companiei respective. Fiecare buton are, de asemenea, mapat un ActionListener pentru tratarea evenimentului de apăsare a acestuia.  În momentul apăsării unui buton (alegerea unei companii) se verifică opțiunea selectată anterior, adică opțiunea de adăugare (variabila "boAdaugaFactura" are valoare TRUE) sau opțiunea de descărcare (variabila "boDescarcaFactura" are valoarea TRUE). Dacă opțiunea de adăugare a unei facturi este cea selectată, un element de tipul JFIleChooser (Figura 3.9) va apărea pe ecran, acesta permițându-ne să alegem fișierul de tip PDF pe care vrem să îl introducem în baza de date. 
 După ce vom selecta fișierul dorit și vom confirma selectarea acestuia, prin intermediul Apache PDFBox va începe procesul de extragere a textului din fișierul respectiv. Se crează o instanță de tip PDFParser care va primi ca paramentru calea către fișierul respectiv, după care va parcurge fișierul și îi va stoca tot conținutul de text într-o singură variabilă de tip String. După aceea se va împărți textul pe rânduri, pentru a fi mai ușor de extras datele necesare din el. \\\\
 PDFTextStripper pdfStripper = null;\\
 PDDocument pdDoc = null;\\
@@ -418,7 +456,7 @@ pdfStripper.setEndPage(2);\\
 String parsedText = pdfStripper.getText(pdDoc);\\
 String lines[] = parsedText.split("\%\%r?\%\%n");\\
 
- După ce s-au extras datele necesare, se va crea o clasă de tip Factură (clasă ce este mapată prin Hibernate la baza de date) și se setează atributele acesteia cu valorile extrase din textul parcurs. După aceea se realizează conexiunea la baza de date prin intermediul unui obiect de tip EntityManager după care se introduce obiectul de tip Factura în baza de date:  \\\\
+ După ce s-au extras datele necesare, se va crea o clasă de tip Factură (clasă ce este mapată prin Hibernate la baza de date) și se setează atributele acesteia cu valorile extrase din textul parcurs. După aceea se realizează conexiunea la baza de date prin intermediul unui obiect de tip EntityManager după care se introduce obiectul de tip Factura în baza de date. Dacă va apărea o eroare la conexiunea cu baza de date, utilizatorul va fi informat printr-o eroare (Figura 3.10). \\\\
  Factura f=new Factura();\\
  f.setNrFactura(nr);\\
  f.setUtilitate(utilitate);\\
@@ -437,7 +475,7 @@ String lines[] = parsedText.split("\%\%r?\%\%n");\\
  em.persist(f);\\
  et.commit();\\
  
- Un mesaj va apărea pe ecran și ne va informa unul din următoarele lucruri: factura este adăugată cu succes (Figura xx.xx), factura este deja existentă în baza de date (Figura xx.xx) sau că a apărut o eroare la extragerea textului din fișierul respectiv (Figura xx.xx). De obicei, acest lucru se întâmplă când a fost selectat fișierul greșit, care nu corespunde companiei alese. În cazul în care factura a fost introdusă cu succes în baza de date, fereastra principală se va reîmprospăta și noua factură introdusă putând fi văzută în tabelul bazei de date. În caz contrar, nu se va întâmpla nimic, utilizatorul putând să reia operația sau să aleagă alta.
+ Un mesaj va apărea pe ecran și ne va informa unul din următoarele lucruri: factura este adăugată cu succes (Figura 3.6), factura este deja existentă în baza de date (Figura 3.7) sau că a apărut o eroare la extragerea textului din fișierul respectiv (Figura 3.8). De obicei, acest lucru se întâmplă când a fost selectat fișierul greșit, care nu corespunde companiei alese. În cazul în care factura a fost introdusă cu succes în baza de date, fereastra principală se va reîmprospăta și noua factură introdusă va exista în tabelul bazei de date. În caz contrar, nu se va întâmpla nimic, utilizatorul putând să reia operația sau să aleagă alta.
 \begin{figure}[!ht]
 	\centering
 	\includegraphics{Companii}
@@ -468,13 +506,17 @@ String lines[] = parsedText.split("\%\%r?\%\%n");\\
 	\caption{Elementul de tip JFileChooser}
 \end{figure}
 
+\begin{figure}[!ht]
+	\centering
+	\includegraphics{EroareConexiune}
+	\caption{Elementul de tip JFileChooser}
+\end{figure}
 
-Butonul "Sterge Factura" are, de asemenea, mapat un ActionListener pentru gestionarea evenimentelor. Prin simpla apăsare a butonului, acesta se declanșează. Primul pas este acela de a verifica dacă este selectată o singură factură, cu ajutorul funcției "getSelectedRows()" care returnează un tablou conținând indecșii rândurilor selectate din tabel. Dacă lungimea tabloului este 1, atunci este selectată o singură factură. În cazul în care nu este selectată o singură factură, un mesaj de atenționare va fi afișat pe ecran (Figura XX.XX). Dacă este selectată o singură factură, un mesaj de întrebare va apărea pe ecran în care utilizatorul va fi întrebat dacă este sigur că vrea să șteargă factura (Figura XX.XX). Dacă acesta răspunde afirmativ, se va realiza o conexiune la baza de date, se va stoca numărul facturii selectate și se va șterge factura cu acel număr din baza de date. Codul Java și SQL care face acest lucru este:
-\\
+Butonul "Șterge Factura" are, de asemenea, mapat un ActionListener pentru gestionarea evenimentelor. Prin simpla apăsare a butonului, acesta se declanșează. Primul pas este acela de a verifica dacă este selectată o singură factură, cu ajutorul funcției "getSelectedRows()" care returnează un tablou conținând indecșii rândurilor selectate din tabel. Dacă lungimea tabloului este 1, atunci este selectată o singură factură. În cazul în care nu este selectată o singură factură, un mesaj de atenționare va fi afișat pe ecran (Figura 3.11). Dacă este selectată o singură factură, un mesaj de întrebare va apărea pe ecran în care utilizatorul va fi întrebat dacă este sigur că vrea să șteargă factura (Figura 3.12). Dacă acesta răspunde afirmativ, se va realiza o conexiune la baza de date, se va stoca numărul facturii selectate și se va șterge factura cu acel număr din baza de date. Dacă va apărea o eroare la conexiunea cu baza de date, utilizatorul va fi informat printr-o eroare (Figura 3.10). \\\\
 Query query = em.createQuery("DELETE FROM Factura f WHERE f.nrFactura = :nrFact");\\
 query.setParameter("nrFact", nrFactura);\\
 
-Dacă utilizatorul se răzgândește și nu vrea să mai șteargă factura selectată, atunci nu se va întâmpla nimic, mesajul de întrebare va dispărea de pe ecran. Dacă factura este ștearsă cu succes, un mesaj de confirmare va fi afișat pe ecran (Figura XX.XX), după care se va reîmprospăta fereastra principală, factura ștearsă ne mai existând în baza de date. În caz contrar, un mesaj de eroare (Figura XX.XX) va înștiința utilizatorul cu privire la acest lucru.
+Dacă utilizatorul se răzgândește și nu vrea să mai șteargă factura selectată, atunci nu se va întâmpla nimic, mesajul de întrebare va dispărea de pe ecran. Dacă factura este ștearsă cu succes, un mesaj de confirmare va fi afișat pe ecran (Figura 3.13), după care se va reîmprospăta fereastra principală, factura ștearsă ne mai existând în baza de date. În caz contrar, un mesaj de eroare (Figura 3.14) va înștiința utilizatorul cu privire la acest lucru.
 
 \begin{figure}[!ht]
 	\centering
@@ -494,7 +536,33 @@ Dacă utilizatorul se răzgândește și nu vrea să mai șteargă factura selec
 	\caption{Mesajul prin care utilizatorul este informat că factura a fost ștearsă cu succes}
 \end{figure}
 
-Atunci când butonul "Plateste Factura" este apăsat, se declanșează evenimentul produs de ActionListener-ul respectiv. Primul pas este acela de a verifica dacă este selectată o singură factură. În cazul în care nu este selectată, se va afișa un mesaj de eroare (Figura XX.XX) și se va încheia procesul de plată. Dacă este selectată o singură factură, se verifică dacă factura respectivă este plătită. Dacă aceasta este plătită, se va afișa un mesaj de eroare (Figura XX.XX). Dacă nu este plătită, se verifică dacă utilizatorul a introdus în trecut datele cardului necesare realizării plății (numărul, titularul, data expirării, codul de securitate). Aceste date sunt stocate într-un fișier din momentul introducerii acestora. Aplicația va căuta să vadă dacă acest fișier există. Dacă acest fișier nu există, va apărea o fereastră (Figura XX.XX) în care utilizatorului i se va cere să introducă datele cardului. După ce câmpurile au fost completate, prin apăsarea butonului "Introduceți datele" se declanșează ActionListener-ul butonului respectiv, care verifică dacă toate câmpurile au fost completate. Dacă datele sunt completate, se va crea un fișier în care se vor stoca datele extrase din câmpurile completate, fiecare informație va fi stocată pe un singur rând (Figura xx.xx). Dacă datele cardului au fost introduse la o plată anterioară, pasul de introducere a acestora în fișier va fi sărit. Următorul pas este acela de a intra în contul de abonat al companiei respective și de a plăti factura. Pentru a realiza acest lucru, avem nevoie de datele de logare ale utilizatorului. Acestea au fost deja stocate într-un fișier al aplicației atunci când s-a produs descărcarea facturii. O fereastră a browser-ului Firefox va porni și cu prin intermediul Selenium va parcuge pașii necesari pentru a plăti factura. Când se ajunge la introducerea datelor cardului, se extrag datele din fișierul creat la începutul procesului de plată sau anterior și se introduc în câmpurile respective. Procesul de plată se încheie prin afișarea unui mesaj în browser, de către compania respectivă, în care se specifică faptul că plata s-a realizat cu succes. În caz contrar, acest lucru va fi evidențiat tot printr-un mesaj în browser al companiei respective. Aplicația nu poate să verifice faptul că datele cardului au fost introduse corect sau chiar datele de logare în contul de utilizator al companiei respective sunt corecte. 
+\begin{figure}[!ht]
+	\centering
+	\includegraphics{EroareStergereFactura}
+	\caption{Mesajul prin care utilizatorul este informat că a avut loc o eroare la ștergerea unei facturi}
+\end{figure}
+
+Descărcarea unei facturi se realizează prin apăsarea butonului "Descarcă Factura", această acțiune declanșând ActionListener-ul butonului respectiv.  Primul pas este acela de a marca acțiunea aleasă de utilizator, și anume de a seta variabila "boDownloadFactura" cu valoarea TRUE. După aceea, fereastra cu siglele companiilor va rula (Figura 3.5). Utilizatorul trebuie să selecteze compania a cărei facturi vrea să o descarce, prin simpla apăsare pe butonul care conține sigla respectivă. După ce a fost apăsat butonul, se declanșează ActionListener-ul respectiv, primul pas fiind acela de a căuta dacă sunt stocate datele de logare, pe site-ul companiei respective, ale utilizatorului. Dacă acestea nu sunt stocate (nu au fost introduse anterior), se va deschide o nouă fereastră în care i se va cere utilizatorului să le introducă (Figura 3.15). După ce datele au fost introduse și butonul "Introduceti datele" a fost apăsat, va apărea un mesaj de confirmare în care se va preciza faptul că datele au fost introduse cu succes (Figura 3.18). Dacă datele de logare sunt deja stocate în sistem, atunci fereastra în care se introduc aceste date nu va mai apărea, restul pașilor ne mai existând. În următul pas, aplicația va deschide o fereastră a browser-ului web și va intra pe site-ul companiei, se va loga în contul de utilizator cu ajutorul datelor de logare stocate anterior, și se va descărca factura. Utilizatorul va trebui să confirme acest lucru prin apăsarea butonului "Save" și să aleagă locația unde va dori ca aceasta să fie salvată. Un exemplu de utilizare a browser-ului Web este mai jos:\\\\
+WebDriverWait wait;\\
+WebDriver driver;\\
+File pathToBinary = new File("/Applications/Firefox.app/Contents/MacOS/firefox");\\
+FirefoxBinary ffBinary = new FirefoxBinary(pathToBinary);\\
+FirefoxProfile firefoxProfile = new FirefoxProfile();\\
+driver = new FirefoxDriver(ffBinary, firefoxProfile);
+wait = new WebDriverWait(driver, 60);\\
+driver.get("https://sso.orange.ro/wp/oro?jspname=login.jsp\&action=LOGINPAGE\_SSO\&full\_page=true");\\
+driver.findElement(By.id("login")).sendKeys(new String[] { username });\\
+driver.findElement(By.name("password")).sendKeys(new String[] { password });\\
+driver.findElement(By.id("autent")).click();\\
+driver.get("https://www.orange.ro/myaccount/invoice/download/lastInvoice");\\
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics{IntroducereDateLogare}
+	\caption{Fereastra de introducere a datelor de logare în contul de utilizator al companiei}
+\end{figure}
+
+Atunci când butonul "Plătește Factura" este apăsat, se declanșează evenimentul produs de ActionListener-ul respectiv. Primul pas este acela de a verifica dacă este selectată o singură factură. În cazul în care nu este selectată, se va afișa un mesaj de eroare (Figura 3.11) și se va încheia procesul de plată. Dacă este selectată o singură factură, se verifică dacă factura respectivă este plătită. Dacă aceasta este plătită, se va afișa un mesaj de eroare (Figura 3.16). Dacă nu este plătită, se verifică dacă utilizatorul a introdus în trecut datele cardului necesare realizării plății (numărul, titularul, data expirării, codul de securitate). Aceste date sunt stocate într-un fișier din momentul introducerii acestora. Aplicația va căuta să vadă dacă acest fișier există. Dacă acest fișier nu există, va apărea o fereastră (Figura 3.17) în care utilizatorului i se va cere să introducă datele cardului. După ce câmpurile au fost completate, prin apăsarea butonului "Introduceți datele" se declanșează ActionListener-ul butonului respectiv, care verifică dacă toate câmpurile au fost completate. Dacă datele sunt completate, se va crea un fișier în care se vor stoca datele extrase din câmpurile completate, fiecare informație va fi stocată pe un singur rând (Figura 3.19). De asemenea, utilizatorul va fi informat că datele introduse au fost stocate cu succes (Figura 3.18). Dacă datele cardului au fost introduse la o plată anterioară, pasul de introducere a acestora în fișier va fi sărit. Următorul pas este acela de a intra în contul de abonat al companiei respective și de a plăti factura. Pentru a realiza acest lucru, avem nevoie de datele de logare ale utilizatorului. Acestea au fost deja stocate într-un fișier al aplicației atunci când s-a produs descărcarea facturii. O fereastră a browser-ului web va porni și, prin intermediul Selenium, va parcuge pașii necesari pentru a plăti factura. Când se ajunge la introducerea datelor cardului, se extrag datele din fișierul creat la începutul procesului de plată sau anterior și se introduc în câmpurile respective. Procesul de plată se încheie prin afișarea unui mesaj în browser, de către compania respectivă, în care se specifică faptul că plata s-a realizat cu succes. În caz contrar, acest lucru va fi evidențiat tot printr-un mesaj în browser al companiei respective. Aplicația nu poate să verifice faptul că datele cardului au fost introduse corect sau chiar datele de logare în contul de utilizator al companiei respective sunt corecte. 
 
 \begin{figure}[!ht]
 	\centering
@@ -511,7 +579,7 @@ Atunci când butonul "Plateste Factura" este apăsat, se declanșează eveniment
 \begin{figure}[!ht]
 	\centering
 	\includegraphics{DateCardSucces}
-	\caption{Mesajul prin care utilizatorul este informat că datele cardului au fost stocate cu succes}
+	\caption{Mesajul prin care utilizatorul este informat că datele cardului / de logare au fost stocate cu succes}
 \end{figure}
 
 \begin{figure}[!ht]
@@ -520,7 +588,7 @@ Atunci când butonul "Plateste Factura" este apăsat, se declanșează eveniment
 	\caption{Modul în care sunt stocate datele cardului în fișier}
 \end{figure}
 
-După ce plata facturii a fost realizată cu succes, aceasta trebuie marcată ca fiind deja plătită. O factură, atunci când este introdusă în baza de date, este marcată ca fiind neachitată. Marcarea facturii ca fiind plătită se realizează prin apăsarea butonului "Factura platita". în momentul apăsării butonul intervine ActionListener-ul respectiv care gestionează acest eveniment. Primul pas este verificarea dacă o singură factură este selectată, în caz contrar se va afișa un mesaj de eroare (Figura XX.XX). Al doilea pas este verificarea dacă factura este neachitată, în caz contrar se va afișa un mesaj de eroare (Figura XX.XX). Dacă cele două verificări au fost trecute cu succes, se extrage din tabelul interfeței grafice numărul facturii selectate, se realizează o conexiune la baza de date și se actualizează statusul facturii care are numărul egal cu cel extras din tabelul interfeței grafice. Utilizatorul este înștiințat că operația s-a realizat cu succes printr-un mesaj (Figura XX.XX).
+După ce plata facturii a fost realizată cu succes, factura trebuie marcată ca fiind plătită. O factură, atunci când este introdusă în baza de date, este marcată ca fiind neachitată. Marcarea facturii ca fiind plătită se realizează prin apăsarea butonului "Factură plătită". În momentul apăsării butonul intervine ActionListener-ul respectiv care gestionează acest eveniment. Primul pas este verificarea dacă o singură factură este selectată, în caz contrar se va afișa un mesaj de eroare (Figura 3.11). Al doilea pas este verificarea dacă factura este neachitată, în caz contrar se va afișa un mesaj de eroare (Figura 3.16). Dacă cele două verificări au fost trecute cu succes, se extrage din tabelul interfeței grafice numărul facturii selectate, se realizează o conexiune la baza de date și se actualizează statusul facturii care are numărul egal cu cel extras din tabelul interfeței grafice. Utilizatorul este înștiințat că operația s-a realizat cu succes printr-un mesaj (Figura 3.20). Dacă va apărea o eroare la conexiunea cu baza de date, utilizatorul va fi informat printr-o eroare (Figura 3.10).
 
 \begin{figure}[!ht]
 	\centering
@@ -528,6 +596,54 @@ După ce plata facturii a fost realizată cu succes, aceasta trebuie marcată ca
 	\caption{Mesajul prin care utilizatorul este informat că factura a fost marcată ca fiind plătită cu succes}
 \end{figure}
 
+Vizualizarea unei facturi se realizează prin selectarea facturii respective și apăsarea butonului "Vizualizează factura". Atunci când este apăsat acest buton, ActionListener-ul respectiv gestionează acest eveniment. Primul pas este acela de a verifica dacă este selectată o singură factură, în caz contrar se va informa utilizatorul prin afișarea unui mesaj (Figura 3.11). Dacă este selectată o singură factură, se va extrage din tabel numărul facturii selectate, după care se va realiza o conexiune la baza de date și se va extrage, din tabelul bazei de date, calea unde este stocată factura cu numărul respectiv. După aceea, se va deschide fișierul aflat la calea respectivă. Fișierul PDF se va deschide cu ajutorul programului prestabilit pentru deschiderea fișierelor care au acest tip de format (Adobe Reader, Internet Explorer, etc). \\\\
+String nrFactura = getSelectedNrFactura();\\
+Query query = em.createQuery("SELECT f FROM Factura f WHERE f.nrFactura = :nrFact");\\
+query.setParameter("nrFact", nrFactura);\\
+$List<$$Factura>$ results = query.getResultList();\\
+String link = results.get(0).getLink();\\
+Desktop.getDesktop().open(new File(link));\\
+
+Generarea rapoartelor este disponibilă prin apăsarea butonului "Generează Rapoarte", declanșând ActionListener-ul respectiv care rulează fereastra "Rapoarte" (Figura 3.21). Fereastra rapoarte este alcătuită numai din perechi de elemente de tip JLabel. Primul element al unei perechi este reprezentat de numele utilității și anul de consum pentru care se generează raport, iar al doilea element este reprezentat de valoarea consumată pentru acea utilitate în intervalul respectiv de timp. În momentul rulării ferestrei "Rapoarte" se realizează o conexiune la baza de date și se extrage din ea doar facturile care sunt plătite.\\\\
+Query query = em.createQuery("SELECT f FROM Factura f WHERE f.status = 'Platita'");\\
+$List<$$Factura>$ results = query.getResultList();\\\\
+Următorul pas este de a lua fiecare factură în parte și a verifica cărui tip de utilitate îi aparține și din ce perioadă. În urma aflării acestui detaliu, suma facturii se va adăuga la suma utilității respective. După ce s-au parcurs toate facturile, rezultatele vor fi afișate cu ajutorul JLabel-urilor, primind valorile rezultatelor.\\\\
+NumberFormat formatter = new DecimalFormat("\#0.00");\\     
+labelTelefonieValue.setText(formatter.format(telefonie));\\
+labelGazeNaturaleValue.setText(formatter.format(gazeNat));\\
+labelTelefonie2015Value.setText(formatter.format(telefonie2015));\\
+labelTelefonie2016Value.setText(formatter.format(telefonie2016));\\
+labelGazeNaturale2015Value.setText(formatter.format(gazeNat2015));\\
+labelGazeNaturale2016Value.setText(formatter.format(gazeNat2016));\\\\
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics{FereastraRapoarte}
+	\caption{Fereastra "Rapoarte" - sunt generate rapoartele}
+\end{figure}
+
+Căutarea unei facturi se realizează prin introducerea de caractere în câmpul destinat căutării. Tabelului respectiv îi este atribuit un element de sortare de tip TableRowSorter. JTextField-ului pentru introducerea de caractere îi este atribuit un ActionListener care gestionează fiecare modificare a textului (introducerea, modificarea sau ștergerea caracterelor). Atunci când o acțiune de modificare a textului are loc, elementului de sortare al tabelului îi este atribuit un nou filtru de sortare, bazat pe conținutul actual al câmpului de căutare. După ce sortarea a avut loc, în tabel vor fi afișate doar rândurile care conțin caracterele introduse în câmpul de căutare. Căutarea se realizează în tot tabelul și nu doar în anumite câmpuri.\\\\
+final TableRowSorter$<$TableModel$>$ rowSorter = new TableRowSorter$<>$(tabel.getModel());\\
+tabel.setRowSorter(rowSorter);\\
+textSearchFactura.getDocument().addDocumentListener(new DocumentListener() \{\\\\
+	@Override\\
+	public void insertUpdate(DocumentEvent e) \{\\
+		String text = textSearchFactura.getText();\\
+		if (text.trim().length() == 0)\\
+			rowSorter.setRowFilter(null);\\
+		else rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));\}\\\\
+	@Override\\
+	public void removeUpdate(DocumentEvent e) \{\\
+		String text = textSearchFactura.getText();\\
+		if (text.trim().length() == 0)\\
+			rowSorter.setRowFilter(null);\\
+		else rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));\}\\\\
+	@Override\\
+	public void changedUpdate(DocumentEvent e) \{\\
+		String text = textSearchFactura.getText();\\
+		if (text.trim().length() == 0)\\
+			rowSorter.setRowFilter(null);\\
+		else rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));\}\});\\
 
 \chapter{Concluzii}
 
@@ -539,6 +655,7 @@ După ce plata facturii a fost realizată cu succes, aceasta trebuie marcată ca
 	\bibitem{PDFBoxOfficial} Apache PDFBox Official Documentation
 	\\\texttt{https://pdfbox.apache.org/index.html}
 	\bibitem{swingBook} Matthew Robinson, Pavel Vorobiev, {\em Java Swing (Second Edition)}, Editura Manning Publications, 2003
+	\bibitem{SeleniumBook} Satya Avasarala, {\em Selenium WebDriver Practical Guide}, Editura Packt Publishing, 2014
 \end{thebibliography}
 	
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.6.1)  18 JUN 2016 21:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.6.1)  20 JUN 2016 16:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -427,237 +427,389 @@ Underfull \hbox (badness 10000) in paragraph at lines 305--308
 
  []
 
-[23] [24]
+[23]
+Overfull \hbox (5.04437pt too wide) in paragraph at lines 332--333
+\OT1/cmr/m/n/12 Selenium Re-mote Con-trol este o libr^^Uarie des-ti-nat^^Ua aut
+o-ma-tiz^^Uarii cu interfa[]a gra-fic^^Ua, permi[]^and
+ []
+
+[24]
+Overfull \hbox (26.01045pt too wide) in paragraph at lines 346--347
+[]\OT1/cmr/m/n/12 Urmeaz^^Ua par-tea HTTP proxy a ser-ve-ru-lui Se-le-nium. Toa
+te ce-re-rile []i r^^Uaspunsurile
+ []
+
+[25] [26
+
+
+]
 Capitolul 3.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <24.88> on input line 330.
+(Font)              <24.88> on input line 359.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <20.74> on input line 330.
+(Font)              <20.74> on input line 359.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <17.28> on input line 330.
-[25
+(Font)              <17.28> on input line 359.
+[27] <images/UseCaseDiagram.jpg, id=102, 482.80376pt x 544.0325pt>
+File: images/UseCaseDiagram.jpg Graphic file (type jpg)
 
+<use images/UseCaseDiagram.jpg>
+Package pdftex.def Info: images/UseCaseDiagram.jpg used on input line 382.
+(pdftex.def)             Requested size: 482.80258pt x 544.03117pt.
 
-] <images/UseCaseDiagram.png, id=96, 471.7625pt x 546.04pt>
-File: images/UseCaseDiagram.png Graphic file (type png)
+Overfull \hbox (10.77135pt too wide) in paragraph at lines 382--383
+ [][] 
+ []
 
-<use images/UseCaseDiagram.png>
-Package pdftex.def Info: images/UseCaseDiagram.png used on input line 351.
-(pdftex.def)             Requested size: 471.76134pt x 546.03867pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [26]
-[27 <./images/UseCaseDiagram.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 371--384
+[28] [29 <./images/UseCaseDiagram.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 403--416
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 371--384
+Underfull \hbox (badness 10000) in paragraph at lines 403--416
 
  []
 
-<images/FereastraPrincipala.png, id=106, 474.77374pt x 320.19624pt>
+<images/FereastraPrincipala.png, id=111, 474.77374pt x 320.19624pt>
 File: images/FereastraPrincipala.png Graphic file (type png)
 
 <use images/FereastraPrincipala.png>
-Package pdftex.def Info: images/FereastraPrincipala.png used on input line 387.
+Package pdftex.def Info: images/FereastraPrincipala.png used on input line 421.
 
 (pdftex.def)             Requested size: 474.77258pt x 320.19545pt.
 
-Overfull \hbox (2.74135pt too wide) in paragraph at lines 387--388
- [] 
+Overfull \hbox (2.74135pt too wide) in paragraph at lines 421--422
+ [][] 
  []
 
-[28] <images/VariabileAjutatoare.png, id=110, 380.42125pt x 59.22125pt>
+
+Overfull \hbox (4.25224pt too wide) in paragraph at lines 425--426
+\OT1/cmr/m/n/12 se-lec-tat la ap^^Uasarea unui bu-ton. Cu aju-to-rul lor se re-
+a-li-zeaz^^Ua opera[]iile de ad^^Uaugare, desc^^Uarcare
+ []
+
+[30 <./images/FereastraPrincipala.png>]
+<images/VariabileAjutatoare.png, id=116, 389.455pt x 51.19125pt>
 File: images/VariabileAjutatoare.png Graphic file (type png)
 
 <use images/VariabileAjutatoare.png>
-Package pdftex.def Info: images/VariabileAjutatoare.png used on input line 394.
+Package pdftex.def Info: images/VariabileAjutatoare.png used on input line 429.
 
-(pdftex.def)             Requested size: 380.4203pt x 59.22108pt.
+(pdftex.def)             Requested size: 389.45404pt x 51.19112pt.
 
-<images/FereastraPrincipalaVizualizare.png, id=111, 531.9875pt x 289.08pt>
+<images/FereastraPrincipalaVizualizare.png, id=117, 531.9875pt x 289.08pt>
 File: images/FereastraPrincipalaVizualizare.png Graphic file (type png)
 
 <use images/FereastraPrincipalaVizualizare.png>
 Package pdftex.def Info: images/FereastraPrincipalaVizualizare.png used on inpu
-t line 400.
+t line 437.
 (pdftex.def)             Requested size: 531.9862pt x 289.07928pt.
 
-Overfull \hbox (59.95497pt too wide) in paragraph at lines 400--401
- [] 
+Overfull \hbox (59.95497pt too wide) in paragraph at lines 437--438
+ [][] 
  []
 
 
-Underfull \vbox (badness 2460) has occurred while \output is active []
-
- [29 <./images/FereastraPrincipala.png> <./images/VariabileAjutatoare.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 405--420
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 405--420
-
- []
-
-[30 <./images/FereastraPrincipalaVizualizare.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 421--439
+Underfull \hbox (badness 10000) in paragraph at lines 443--458
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 421--439
+Underfull \hbox (badness 10000) in paragraph at lines 443--458
 
  []
 
-<images/Companii.png, id=121, 362.35374pt x 262.9825pt>
+[31 <./images/VariabileAjutatoare.png> <./images/FereastraPrincipalaVizualizare
+.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 459--477
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 459--477
+
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [32]
+<images/Companii.png, id=127, 362.35374pt x 262.9825pt>
 File: images/Companii.png Graphic file (type png)
 
 <use images/Companii.png>
-Package pdftex.def Info: images/Companii.png used on input line 443.
+Package pdftex.def Info: images/Companii.png used on input line 481.
 (pdftex.def)             Requested size: 362.35286pt x 262.98184pt.
 
-<images/FacturaAdaugataSucces.png, id=122, 311.1625pt x 163.61125pt>
+<images/FacturaAdaugataSucces.png, id=128, 311.1625pt x 163.61125pt>
 File: images/FacturaAdaugataSucces.png Graphic file (type png)
 
 <use images/FacturaAdaugataSucces.png>
-Package pdftex.def Info: images/FacturaAdaugataSucces.png used on input line 44
-9.
+Package pdftex.def Info: images/FacturaAdaugataSucces.png used on input line 48
+7.
 (pdftex.def)             Requested size: 311.16174pt x 163.61084pt.
 
-<images/FacturaExistenta.png, id=123, 277.035pt x 167.62625pt>
+<images/FacturaExistenta.png, id=129, 277.035pt x 167.62625pt>
 File: images/FacturaExistenta.png Graphic file (type png)
 
 <use images/FacturaExistenta.png>
-Package pdftex.def Info: images/FacturaExistenta.png used on input line 455.
+Package pdftex.def Info: images/FacturaExistenta.png used on input line 493.
 (pdftex.def)             Requested size: 277.03432pt x 167.62582pt.
 
-<images/EroareCitireaFacturii.png, id=124, 332.24126pt x 166.6225pt>
+<images/EroareCitireaFacturii.png, id=130, 332.24126pt x 166.6225pt>
 File: images/EroareCitireaFacturii.png Graphic file (type png)
 
 <use images/EroareCitireaFacturii.png>
-Package pdftex.def Info: images/EroareCitireaFacturii.png used on input line 46
-1.
+Package pdftex.def Info: images/EroareCitireaFacturii.png used on input line 49
+9.
 (pdftex.def)             Requested size: 332.24043pt x 166.62209pt.
 
-<images/FileChooser.png, id=125, 410.53375pt x 329.23pt>
+<images/FileChooser.png, id=131, 410.53375pt x 329.23pt>
 File: images/FileChooser.png Graphic file (type png)
 
 <use images/FileChooser.png>
-Package pdftex.def Info: images/FileChooser.png used on input line 467.
+Package pdftex.def Info: images/FileChooser.png used on input line 505.
 (pdftex.def)             Requested size: 410.53275pt x 329.22919pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 472--476
+<images/EroareConexiune.png, id=132, 371.3875pt x 167.62625pt>
+File: images/EroareConexiune.png Graphic file (type png)
+
+<use images/EroareConexiune.png>
+Package pdftex.def Info: images/EroareConexiune.png used on input line 511.
+(pdftex.def)             Requested size: 371.38658pt x 167.62582pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 515--518
 
  []
 
 
-Underfull \vbox (badness 1521) has occurred while \output is active []
+Underfull \hbox (badness 10000) in paragraph at lines 515--518
 
- [31]
-[32 <./images/Companii.png> <./images/FacturaAdaugataSucces.png>]
-<images/TrebuieSelectata1Factura.png, id=135, 355.3275pt x 164.615pt>
+ []
+
+[33 <./images/Companii.png>]
+
+LaTeX Warning: Text page 34 contains only floats.
+
+[34 <./images/FacturaAdaugataSucces.png> <./images/FacturaExistenta.png> <./ima
+ges/EroareCitireaFacturii.png>] [35 <./images/FileChooser.png> <./images/Eroare
+Conexiune.png>]
+<images/TrebuieSelectata1Factura.png, id=148, 355.3275pt x 164.615pt>
 File: images/TrebuieSelectata1Factura.png Graphic file (type png)
 
 <use images/TrebuieSelectata1Factura.png>
 Package pdftex.def Info: images/TrebuieSelectata1Factura.png used on input line
- 481.
+ 523.
 (pdftex.def)             Requested size: 355.32661pt x 164.6146pt.
 
-<images/SuntetiSigur.png, id=136, 260.975pt x 164.615pt>
+<images/SuntetiSigur.png, id=149, 260.975pt x 164.615pt>
 File: images/SuntetiSigur.png Graphic file (type png)
 
 <use images/SuntetiSigur.png>
-Package pdftex.def Info: images/SuntetiSigur.png used on input line 487.
+Package pdftex.def Info: images/SuntetiSigur.png used on input line 529.
 (pdftex.def)             Requested size: 260.97437pt x 164.6146pt.
 
-<images/FacturaStearsaSucces.png, id=137, 298.11375pt x 167.62625pt>
+<images/FacturaStearsaSucces.png, id=150, 298.11375pt x 167.62625pt>
 File: images/FacturaStearsaSucces.png Graphic file (type png)
 
 <use images/FacturaStearsaSucces.png>
-Package pdftex.def Info: images/FacturaStearsaSucces.png used on input line 493
+Package pdftex.def Info: images/FacturaStearsaSucces.png used on input line 535
 .
 (pdftex.def)             Requested size: 298.11302pt x 167.62582pt.
- [33 <./images/FacturaExistenta.png> <./images/EroareCitireaFacturii.png>] [34 
-<./images/FileChooser.png> <./images/TrebuieSelectata1Factura.png>]
-Underfull \vbox (badness 1377) has occurred while \output is active []
 
- [35 <./images/SuntetiSigur.png> <./images/FacturaStearsaSucces.png>]
-<images/FacturaPlatita.png, id=153, 289.08pt x 167.62625pt>
+<images/EroareStergereFactura.png, id=151, 303.1325pt x 167.62625pt>
+File: images/EroareStergereFactura.png Graphic file (type png)
+
+<use images/EroareStergereFactura.png>
+Package pdftex.def Info: images/EroareStergereFactura.png used on input line 54
+1.
+(pdftex.def)             Requested size: 303.13176pt x 167.62582pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 545--558
+
+ []
+
+
+Overfull \hbox (82.45082pt too wide) in paragraph at lines 545--558
+\OT1/cmr/m/n/12 driver.get("https://sso.orange.ro/wp/oro?jspname=login.jsp&acti
+on=LOGINPAGE[]SSO&full[]page=true"); 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 545--558
+
+ []
+
+[36 <./images/TrebuieSelectata1Factura.png> <./images/SuntetiSigur.png>]
+Underfull \vbox (badness 1107) has occurred while \output is active []
+
+ [37 <./images/FacturaStearsaSucces.png> <./images/EroareStergereFactura.png>]
+<images/IntroducereDateLogare.png, id=163, 439.6425pt x 137.51375pt>
+File: images/IntroducereDateLogare.png Graphic file (type png)
+
+<use images/IntroducereDateLogare.png>
+Package pdftex.def Info: images/IntroducereDateLogare.png used on input line 56
+1.
+(pdftex.def)             Requested size: 439.64142pt x 137.51341pt.
+ [38 <./images/IntroducereDateLogare.png>] <images/FacturaPlatita.png, id=168, 
+289.08pt x 167.62625pt>
 File: images/FacturaPlatita.png Graphic file (type png)
 
 <use images/FacturaPlatita.png>
-Package pdftex.def Info: images/FacturaPlatita.png used on input line 501.
+Package pdftex.def Info: images/FacturaPlatita.png used on input line 569.
 (pdftex.def)             Requested size: 289.07928pt x 167.62582pt.
 
-<images/DetaliiCard.png, id=154, 368.37625pt x 168.63pt>
+<images/DetaliiCard.png, id=169, 368.37625pt x 168.63pt>
 File: images/DetaliiCard.png Graphic file (type png)
 
 <use images/DetaliiCard.png>
-Package pdftex.def Info: images/DetaliiCard.png used on input line 507.
+Package pdftex.def Info: images/DetaliiCard.png used on input line 575.
 (pdftex.def)             Requested size: 368.37534pt x 168.62958pt.
 
-<images/DateCardSucces.png, id=155, 295.1025pt x 168.63pt>
+<images/DateCardSucces.png, id=170, 295.1025pt x 168.63pt>
 File: images/DateCardSucces.png Graphic file (type png)
 
 <use images/DateCardSucces.png>
-Package pdftex.def Info: images/DateCardSucces.png used on input line 513.
+Package pdftex.def Info: images/DateCardSucces.png used on input line 581.
 (pdftex.def)             Requested size: 295.10176pt x 168.62958pt.
 
-<images/DetaliiCardDocument.png, id=156, 134.5025pt x 76.285pt>
+<images/DetaliiCardDocument.png, id=171, 134.5025pt x 76.285pt>
 File: images/DetaliiCardDocument.png Graphic file (type png)
 
 <use images/DetaliiCardDocument.png>
-Package pdftex.def Info: images/DetaliiCardDocument.png used on input line 519.
+Package pdftex.def Info: images/DetaliiCardDocument.png used on input line 587.
 
 (pdftex.def)             Requested size: 134.50215pt x 76.2848pt.
- [36 <./images/FacturaPlatita.png> <./images/DetaliiCard.png>]
-<images/EditareSucces.png, id=162, 299.1175pt x 170.6375pt>
+ [39 <./images/FacturaPlatita.png> <./images/DetaliiCard.png>]
+<images/EditareSucces.png, id=177, 299.1175pt x 170.6375pt>
 File: images/EditareSucces.png Graphic file (type png)
 
 <use images/EditareSucces.png>
-Package pdftex.def Info: images/EditareSucces.png used on input line 527.
+Package pdftex.def Info: images/EditareSucces.png used on input line 595.
 (pdftex.def)             Requested size: 299.11676pt x 170.63707pt.
- [37 <./images/DateCardSucces.png> <./images/DetaliiCardDocument.png> <./images
-/EditareSucces.png>] [38
+
+Underfull \hbox (badness 10000) in paragraph at lines 599--606
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 599--606
+
+ []
+
+
+Underfull \vbox (badness 1472) has occurred while \output is active []
+
+ [40 <./images/DateCardSucces.png> <./images/DetaliiCardDocument.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 607--618
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 607--618
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 607--618
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 607--618
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 607--618
+
+ []
+
+
+Underfull \vbox (badness 1540) has occurred while \output is active []
+
+ [41 <./images/EditareSucces.png>]
+<images/FereastraRapoarte.png, id=188, 495.8525pt x 163.61125pt>
+File: images/FereastraRapoarte.png Graphic file (type png)
+
+<use images/FereastraRapoarte.png>
+Package pdftex.def Info: images/FereastraRapoarte.png used on input line 621.
+(pdftex.def)             Requested size: 495.85129pt x 163.61084pt.
+
+Overfull \hbox (23.82005pt too wide) in paragraph at lines 621--622
+ [][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 625--647
+
+ []
+
+
+Overfull \hbox (2.5208pt too wide) in paragraph at lines 625--647
+\OT1/cmr/m/n/12 final TableRowSorter$\OML/cmm/m/it/12 <$\OT1/cmr/m/n/12 TableMo
+del$\OML/cmm/m/it/12 >$ \OT1/cmr/m/n/12 row-Sor-ter = new TableRowSorter$\OML/c
+mm/m/it/12 <>$\OT1/cmr/m/n/12 (tabel.getModel()); 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 625--647
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 625--647
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 625--647
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 625--647
+
+ []
+
+[42 <./images/FereastraRapoarte.png>] [43] [44
 
 
 ]
 Capitolul 4.
-[39] [40
+[45] [46
 
 
-] [41] (./Document.aux)
+] [47] (./Document.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 6452 strings out of 493027
- 91267 string characters out of 6134070
- 187462 words of memory out of 5000000
- 9874 multiletter control sequences out of 15000+600000
+ 6476 strings out of 493027
+ 91958 string characters out of 6134070
+ 187466 words of memory out of 5000000
+ 9893 multiletter control sequences out of 15000+600000
  12792 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 47i,11n,51p,2563b,479s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 47i,11n,51p,2659b,479s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></
-usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
-r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/
-local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/loc
-al/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/loca
-l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl8.pfb></usr/local/
-texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/t
-exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/te
-xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on Document.pdf (41 pages, 660577 bytes).
+usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></u
+sr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
+/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/l
+ocal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/loca
+l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/local
+/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl8.pfb></usr/local/t
+exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/te
+xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/tex
+live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on Document.pdf (47 pages, 740360 bytes).
 PDF statistics:
- 223 PDF objects out of 1000 (max. 8388607)
- 127 compressed objects within 2 object streams
+ 253 PDF objects out of 1000 (max. 8388607)
+ 143 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 101 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 121 words of extra memory for PDF output out of 10000 (max. 10000000)
 

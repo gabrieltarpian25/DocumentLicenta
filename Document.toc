@@ -7,7 +7,8 @@
 \contentsline {section}{\numberline {2.2}MySQL}{14}
 \contentsline {section}{\numberline {2.3}Hibernate}{18}
 \contentsline {section}{\numberline {2.4}Apache PDFBox}{22}
-\contentsline {chapter}{\numberline {3}Aplica\IeC {{\textcommabelow t}}ia}{25}
-\contentsline {section}{\numberline {3.1}Descriere}{25}
-\contentsline {section}{\numberline {3.2}Descrierea func\IeC {{\textcommabelow t}}ionalit\IeC {\u a}\IeC {{\textcommabelow t}}ilor}{27}
-\contentsline {chapter}{\numberline {4}Concluzii}{39}
+\contentsline {section}{\numberline {2.5}Selenium Remote Control}{24}
+\contentsline {chapter}{\numberline {3}Aplica\IeC {{\textcommabelow t}}ia}{27}
+\contentsline {section}{\numberline {3.1}Descriere}{27}
+\contentsline {section}{\numberline {3.2}Descrierea func\IeC {{\textcommabelow t}}ionalit\IeC {\u a}\IeC {{\textcommabelow t}}ilor}{28}
+\contentsline {chapter}{\numberline {4}Concluzii}{45}
