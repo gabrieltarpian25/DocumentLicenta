@@ -1,14 +1,15 @@
 \select@language {romanian}
-\contentsline {chapter}{\numberline {1}Introducere}{5}
-\contentsline {section}{\numberline {1.1}Motivare}{5}
-\contentsline {section}{\numberline {1.2}Software existente}{6}
-\contentsline {chapter}{\numberline {2}Tehnologii folosite}{7}
-\contentsline {section}{\numberline {2.1}Java}{7}
-\contentsline {section}{\numberline {2.2}MySQL}{14}
-\contentsline {section}{\numberline {2.3}Hibernate}{18}
-\contentsline {section}{\numberline {2.4}Apache PDFBox}{22}
-\contentsline {section}{\numberline {2.5}Selenium Remote Control}{24}
-\contentsline {chapter}{\numberline {3}Aplica\IeC {{\textcommabelow t}}ia}{27}
-\contentsline {section}{\numberline {3.1}Descriere}{27}
-\contentsline {section}{\numberline {3.2}Descrierea func\IeC {{\textcommabelow t}}ionalit\IeC {\u a}\IeC {{\textcommabelow t}}ilor}{28}
-\contentsline {chapter}{\numberline {4}Concluzii}{45}
+\contentsline {chapter}{\numberline {1}Abstract}{5}
+\contentsline {chapter}{\numberline {2}Introducere}{7}
+\contentsline {section}{\numberline {2.1}Motivare}{7}
+\contentsline {section}{\numberline {2.2}Software existente}{8}
+\contentsline {chapter}{\numberline {3}Tehnologii folosite}{9}
+\contentsline {section}{\numberline {3.1}Java}{9}
+\contentsline {section}{\numberline {3.2}MySQL}{15}
+\contentsline {section}{\numberline {3.3}Hibernate}{19}
+\contentsline {section}{\numberline {3.4}Apache PDFBox}{25}
+\contentsline {section}{\numberline {3.5}Selenium Remote Control}{26}
+\contentsline {chapter}{\numberline {4}Aplica\IeC {{\textcommabelow t}}ia}{29}
+\contentsline {section}{\numberline {4.1}Descriere}{29}
+\contentsline {section}{\numberline {4.2}Descrierea func\IeC {{\textcommabelow t}}ionalit\IeC {\u a}\IeC {{\textcommabelow t}}ilor}{30}
+\contentsline {chapter}{\numberline {5}Concluzii}{47}

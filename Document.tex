@@ -8,19 +8,43 @@
 \usepackage[left=25mm, top=25mm,right=25mm]{geometry}
 
 \usepackage{pdfpages}
+\usepackage{listings} 
+\usepackage{url}
 
 \usepackage{graphicx}
 \graphicspath{ {images/} }
 
 \begin{document}
-	
-\title{Lucrare Licenta}
-\maketitle
+
+%titlepage
+\thispagestyle{empty}
+\begin{center}
+	\begin{minipage}{0.75\linewidth}
+		\centering
+		{\Large Universitatea de Vest din Timișoara, Facultatea de Matematică și Informatică, Informatică Aplicată\\ West Univerisity Of Timișoara, Faculty of Mathematics and Computer Science, Applied Computer Science \par}
+		\vspace{3cm}
+		%Thesis title
+		{\Huge Lucrare de licență\\ Graduation thesis\par}
+		\vspace{2cm}
+		%Author's name
+		{\Huge Aplicație de organizare a facturilor \\ Application for organizing bills \par}
+		{\Large Prof. Coordonator / Coordinating Teacher: Lect. Dr. Flavia Micota  \\ Student / Student: Tărpian Gabriel Lucian\\ \par}
+		\vspace{5cm}
+		%Date
+		{\Large Timișoara, 2016}
+	\end{minipage}
+\end{center}
+\clearpage
+
 \tableofcontents
 	
+\chapter{Abstract}	
+
+Apariția internetului a dus la apariția plăților online. Astăzi, acest domeniu este extrem de popular, mulți oameni plătesc facturile online, dar și mai mulți nu fac acest lucru din cauza procesului complicat. Aplicația realizată descarcă factura automat direct din contul companiei în cauză. Odată descărcată, ea poate fi introdusă în baza de date, mai exact fișierul PDF al acesteia. După ce a fost introdusă în baza de date, se pot realiza operații asupra facturii respective, cum ar fi plata acesteia urmată de marcarea ei că a fost plătită, vizualizarea și ștergerea din baza de date. De asemenea, se pot genera rapoarte pentru a vedea ce sumă s-a cheltuit pentru o anumită utilitate într-un interval specific de timp. Baza de date oferă următoarele informații despre o factură: numărul, tipul de utilitate, compania, data emiterii, data scadentă, totalul de plată și statusul acesteia (plătită sau neplătită). Este posibilă și căutarea unei facturi în baza de date, căutarea se poate realiza după orice tip de informație stocată în baza de date. Factura va putea fi plătită prin intermediul cardului, datele acestuia fiind stocate o singură dată la începutul primului proces de plată.
+
 \chapter{Introducere}
 \section{Motivare}
-Tema lucrării mele de licență este denumită "Aplicație de gestionare a facturilor" și reprezintă dorința mea explicită de a face mai accesibil acest proces pentru toată lumea.
+Tema lucrării mele de licență se intitulează "Aplicație de gestionare a facturilor" și este rezultatul unei curiozități în domeniul plăților online și al unei provocări.
 
 Plata electronică a facturilor este o caracteristică a mediului online și telefoniei bancare. Clientul unei instituții financiare transferă bani din contul său cu ajutorul cardului de credit către un creditor (utilitate publică, magazin, etc) sau către un alt individual. Aceste plăți sunt realizate, de obicei, electronic ca fiind un depozit direct prin intermediul sistemului național de plată, operate de bănci sau împreună cu guvernul. Adițional la plata facturilor, majoritatea băncilor oferă diferite caracteristici care vin odată cu sistemul electronic de plată al facturilor. Acestea includ abilitatea de a stabili plăți viitoare în avans la o dată respectivă, salvarea informațiilor companiei a cărei facturi s-a plătit și alte opțiuni de a căuta în istoria recentă a plăților. 
 
@@ -36,27 +60,30 @@ Viziunea mea pentru următorii 5 ani este aceea că majoritatea oamenilor vor pl
 
 Toate cele prezentate mai sus mi-au stârnit curiozitate și interesul si m-au determinat să aleg această temă pentru lucrarea mea de licență, iar acest lucru presupune să mă documentez cât mai serios cu privire la domeniul plăților online, să înțeleg cum funcționează toate aceste mecanisme și să caut o metoda de îmbunătățire a acestora din toate punctele de vedere. 
 
-Lucrarea de licență este structurată în patru capitole.
+Lucrarea de licență este structurată pe 5 capitole, fiecare capitol conținând și subcapitole.
 
-Capitolul I conține partea de introducere în care se vorbește despre sursa de motivare care a stat în spatele cercetării și elaborării lucrării cât și a tehnologiilor care sunt deja în același domeniu.
+Capitolul I introduce cititorul în această lucrare, prezentându-i principalele funcționalități ale aplicației realizate.
 
-Capitolul al II-lea prezintă tehnologiile folosite: Java, MySQL, Hibernate, PDFBox. Fiecare tehnologie este descrisă succint conținând și exemple din codul sursă al aplicației.
+Capitolul al II-lea conține partea de introducere în care se vorbește despre sursa de motivare care a stat în spatele cercetării și elaborării lucrării cât și a tehnologiilor care sunt deja în același domeniu.
+Capitolul al III-lea prezintă tehnologiile folosite: Java, MySQL, Hibernate, PDFBox și Selenium WebDriver. Fiecare tehnologie este descrisă succint conținând și exemple din codul sursă al aplicației.
 
-Capitolul al III-lea descrie funcționalitatea aplicației. Este descrisă fiecare operație în parte însoțită de imagini sugestive. 
+Capitolul al IV-lea descrie funcționalitatea aplicației. Este descrisă fiecare operație în parte însoțită de imagini sugestive. 
 
-Capitolul al IV-lea încheie lucrarea de licență prezentând care sunt planurile de viitor pentru dezvoltarea aplicației și care au fost dificultățile întâmpinate de-a lungul dezvoltării.
+Capitolul al V-lea încheie lucrarea de licență prezentând care sunt planurile de viitor pentru dezvoltarea aplicației și care au fost dificultățile întâmpinate de-a lungul dezvoltării.
+
+
 \section{Software existente}
 
-Cel mai cunoscut software românesc în acest domeniu este platforma http://www.platifacturi.com. Aici utilizatorul își alege furnizorul (Orange, Telekom, Vodafone, RCS, UPC, E-ON, Enel sau distribuitorul local de apă pentru unele județe) după care va introduce numărul facturii, codul clientului și suma de plată. După completarea acestor câmpuri se verifică dacă datele introduse sunt corecte după care utilizatorului îi sunt cerute datele cardului (număr, data expirării, cod de securitate, deținătorul cardului). După ce utilizatorul a completat și aceste câmpuri se verifică validitatea lor după care se finalizează plata. Pentru fiecare factură plătită prin intermediul aceste platforme se percepe un comision de 0.95\% din totalul facturii, dar nu mai puțin de 1 LEU. 
+Cel mai cunoscut software românesc în acest domeniu este platforma http://www.platifacturi.com. Aici utilizatorul își alege furnizorul (Orange, Telekom, Vodafone, RCS, UPC, E-ON, Enel sau distribuitorul local de apă pentru unele județe) după care va introduce numărul facturii, codul clientului și suma de plată. După completarea acestor câmpuri se verifică dacă datele introduse sunt corecte după care utilizatorului îi sunt cerute datele cardului (număr, data expirării, cod de securitate, deținătorul cardului). După ce utilizatorul a completat și aceste câmpuri se verifică validitatea lor după care se finalizează plata. Pentru fiecare factură plătită prin intermediul aceste platforme se percepe un comision de 0.95\% din totalul facturii, dar nu mai puțin de 1 LEU. \cite{PlatiFacturi}
 
 O altă modalitate de a plăti electronic facturile este prin intermediul platformei companiei în cauză. De exemplu, fiecare abonat Orange deține sau poate să își creeze un cont de abonat și prin intermediul acestuia se pot plăti și vizualiza facturile. Această metodă este mai bună decât cea de mai sus deoarece nu se percepe niciun comision, un dezavantaj fiind faptul că dacă vrei să plătești factura Orange, Telekom, Enel, E-On ai nevoie de câte un cont de abonat la fiecare companie. 
 
 \chapter{Tehnologii folosite}
 \section{Java}
 	
-Java este un limbaj de programare orientat-obiect realizat de către James Gosling în cadrul companiei Sun Mycrosystems (acum filiala Oracle) și a fost creat să aibă cât mai puține dependențe legate de implementare. A fost creat ca să ajute dezvoltatorii de aplicații, limbajul fiind unul de tip WORA (Write Once Run Anywhere, traducere: Scrie odată rulează peste tot).  A fost lansat în anul 1995 iar de atunci a suferit o popularitate foarte mare, majoritatea aplicațiilor distribuite fiind scrise în Java, iar odată cu evoluția tehnologiei, limbajul de programare a devenit utilizat și la scrierea aplicațiilor mobile, agendelor telefonice, etc. Java este utilizat în prezent, având un real succes, și la programarea aplicațiilor destinate intranet-urilor. Astăzi, Java este unul dintre cele mai utilizate limbaje de programare, în special pentru aplicațiile web de tip client-server, având reportat un număr de 9 milioane de dezvoltatori.\cite{thinkJava}
+Java este un limbaj de programare orientat-obiect realizat de către James Gosling în cadrul companiei Sun Mycrosystems (acum filiala Oracle) și a fost creat să aibă cât mai puține dependențe legate de implementare. A fost creat ca să ajute dezvoltatorii de aplicații, limbajul fiind unul de tip WORA (Write Once Run Anywhere, traducere: Scrie odată rulează peste tot).  A fost lansat în anul 1995, majoritatea aplicațiilor distribuite fiind scrise în Java, iar odată cu evoluția tehnologiei, limbajul de programare a început să fie utilizat și la scrierea aplicațiilor mobile, agendelor telefonice, etc. Java este utilizat în prezent, având un real succes, și la programarea aplicațiilor destinate intranet-urilor. Astăzi, Java este unul dintre cele mai utilizate limbaje de programare, în special pentru aplicațiile web de tip client-server, având reportat un număr de 9 milioane de dezvoltatori. \cite{thinkJava}
 	
-Limbajul Java își însușește o mare parte din sintaxa limbajelor C și C++. Diferența dintre aceste limbaje este făcută în cadrul nivelului de jos al programării, Java având mai puține facilități, dar obiectul modelelor este de asemenea simplificat. Un program Java care este corect și care nu suferă modificări poate rula pe orice platformă care are instalată mașina virtuală Java(JVM care inseamnă Java Virtual Machine). Acest lucru este posibil deoarece codul scris în Java este compilat într-un format standard numit cod ce octeți( în engleză byte-code). Codul de octeți diferă față de codul mașină. Codul mașină poate fi executat fără a mai fi prelucrat deoarece este reprezentat de o secvență de instrucțiuni specifice unui anumit tip de procesor și a unei platforme binare de lucru. Codul de octeți reprezintă instrucțiuni asemănătoare codului scris in limbaj de asamblare. Compilatorul generează codul de octeți independent de platforma de lucru. Codul mașină este executat direct de către procesor și va putea rula numai pe platforma pe care a fost creat, pe când codul de octeți va putea rula pe orice platformă care are instalat mediul de programare Java deoarece codul de octeți este interpretat întocmai de acest mediu de programare. \cite{cursPracticJava}
+Limbajul Java își însușește o mare parte din sintaxa limbajelor C și C++. Diferența dintre aceste limbaje este făcută în cadrul nivelului de jos al programării, Java având mai puține facilități, dar obiectul modelelor este de asemenea simplificat. Un program Java care este corect și care nu suferă modificări poate rula pe orice platformă care are instalată mașina virtuală Java (Java Virtual Machine, prescurtat JVM). Acest lucru este posibil deoarece codul scris în Java este compilat într-un format standard numit cod ce octeți (în engleză: byte-code). Codul de octeți diferă față de codul mașină. Codul mașină poate fi executat fără a mai fi prelucrat deoarece este reprezentat de o secvență de instrucțiuni specifice unui anumit tip de procesor și a unei platforme binare de lucru. Codul de octeți reprezintă instrucțiuni asemănătoare codului scris in limbaj de asamblare. Compilatorul generează codul de octeți independent de platforma de lucru. Codul mașină este executat direct de către procesor și va putea rula numai pe platforma pe care a fost creat, pe când codul de octeți va putea rula pe orice platformă care are instalat mediul de programare Java deoarece codul de octeți este interpretat întocmai de acest mediu de programare. \cite{cursPracticJava}
 
 Java Virtual Machine este disponibilă pentru toată lumea incepând din anul 2006, atunci când Sun a publicat un articol prin care anunțau că varianta companiei de JVM va fii open-source. Există și alți furnizori de JVM, printre care Oracle, IBM, Bea, FSF. \cite{thinkJava}
 
@@ -80,16 +107,17 @@ Caracteristicile principale ale limbajului de programare Java au făcut ca acest
 		\item Neutralitate arhitecturală - arhitectura fizică a mașinii pe care rulează aplicația nu influențează comportamentul acesteia.
 		\item Portabilitate - independența față de platforma de lucru reprezintă un avantaj foarte mare pentru limbajul de programare și este o opțiune foarte bună pentru companiile dezvoltatoare de aplicații din cauza reducerii costurilor. Aplicațiile nu mai necesită recompilate și modificate la trecerea de la un sistem de operare la altul.
 		\item	Este un cod compilat și interpretat, aceste două mari caracteristici definesc portabilitatea limbajului de programare.
-		\item Performanță - recunoscut pentru faptul că limbajul este mai lent decât cele care generează executabile native pentru o anumită platformă de lucru, performanța ridicată a codului de octeți este asigurată de compilatorul Java, astfel încât viteza mai scăzută nu reprezintă un impediment dezvoltării aplicațiilor complexe ( animații, grafică 3D). \cite{cursPracticJava}
+		\item Performanță - recunoscut pentru faptul că limbajul este mai lent decât cele care generează executabile native pentru o anumită platformă de lucru, performanța ridicată a codului de octeți este asigurată de compilatorul Java, astfel încât viteza mai scăzută nu reprezintă un impediment dezvoltării aplicațiilor complexe (animații, grafică 3D). \cite{cursPracticJava}
 \end{itemize}
 \end{addmargin}
-\bigbreak	
-Oracle a furnizat pentru Java 4 platforme:
+\bigbreak
+	
+În prezent, există 4 platforme Java:
 \begin{addmargin}[4em]{1em}
 \begin{itemize}
 	\item Java Card – pentru smartcarduri (carduri cu cip)
 	\item Java Platform, Micro Edition (Java ME) – pentru hardware cu resurse limitate gen telefoane mobile
-	\item Java Platform, Standard Edition(Java SE)- pentru sisteme gen workstation ( gasim la PC-uri)
+	\item Java Platform, Standard Edition(Java SE) - pentru sisteme gen workstation (gasim la PC-uri)
 	\item Java Platform, Enterprise Edition(Java EE) – pentru sisteme de calcul mari \cite{thinkJava}
 \end{itemize}
 \end{addmargin}
@@ -111,7 +139,7 @@ Mai multe versiuni au apărut de-a lungul timpului, și anume un număr de 9 ver
 \bigbreak
 Ultima versiune a limbajului Java (Java SE 8 -2014) este singura versiune gratis suportată de Oracle. \cite{cursPracticJava}
 	
-Un IDE (Integrated Development Environment) este, după cum spune numele, un mediu de lucru care permite dezvoltarea aplicațiilor specifice unui limbaj de programare. Pentru Java sunt următoarele : JCreator, Eclipse, NetBeans, BEA Workshop, BlueJ, CodeGuide, Dr Java, IntelliJ IDEA, JBuilder,JDeveloper, KDevelop.
+IDE (Integrated Development Environment) este, după cum spune numele, un mediu de lucru care permite dezvoltarea aplicațiilor specifice unui limbaj de programare. Pentru Java sunt următoarele : JCreator, Eclipse, NetBeans, BEA Workshop, BlueJ, CodeGuide, Dr Java, IntelliJ IDEA, JBuilder,JDeveloper, KDevelop.
 	
 Limbajul de programare Java a fost creat pe baza a cinci obiective majore:
 \begin{addmargin}[4em]{1em}
@@ -121,20 +149,22 @@ Limbajul de programare Java a fost creat pe baza a cinci obiective majore:
 	\item Trebuie să fie neutru din punct de vedere al arhitecturii și în același timp, portabil.
 	\item Trebuie să fie executat cu performanță ridicată.
 	\item Trebuie să fie interpretat, filetat și dinamic. 
+	\cite{thinkJava}
 \end{enumerate}
 \end{addmargin}
 \bigbreak
-Oracle Corporation este proprietarul actual al implementării oficiale a platformei Java Standard Edition, ca urmare a achiziției companiei Sun Microsystems în anul 2010. Implementarea actuală este bazată pe implementarea originală facută de cei de la Sun. Implementarea Oracle este disponibilă pentru Microsoft Windows (încă merge și pentru Windows XP), Mac OS X, Linux și Solaris. 
+Oracle Corporation este proprietarul actual al implementării oficiale a platformei Java Standard Edition, ca urmare a achiziției companiei Sun Microsystems în anul 2010. Implementarea actuală este bazată pe implementarea originală facută de cei de la Sun. Implementarea Oracle este disponibilă pentru Microsoft Windows (inclusiv Windows XP), Mac OS X, Linux și Solaris. 
 	
 Implementarea Oracle este distribuită în două moduri:
 \begin{addmargin}[4em]{1em}
 \begin{itemize}
 \item The Java Runtime Environment (JRE) - conține părțile din platforma JAVA SE necesare pentru a rula programe Java 
-\item The Java Development Kit (JDK) - este destinat programatorilor și conține programele de dezvoltare precum compilatorul Java, Javadoc, Jar și un debugger.\cite{JavaWiki}	
+\item The Java Development Kit (JDK) - este destinat programatorilor și conține programele de dezvoltare a aplicațiilor precum compilatorul Java, Javadoc, Jar și un debugger. 
+\cite{thinkJava}	
 \end{itemize}
 \end{addmargin}
 \bigbreak
-OpenJDK este altă implementare din familia JAVA SE care este sub licența GNU GPL. Implementarea a început când Sun a lansat codul sursă pentru Java sub licența GPL. Ca și în JAVA SE 7, OpenJDK este referința oficială a implementării limbajului de programare Java.
+OpenJDK este altă implementare din familia JAVA SE care este sub licența GNU GPL. Implementarea a început când Sun a lansat codul sursă pentru Java sub licența GPL. Ca și în JAVA SE 7, OpenJDK este referința oficială a implementării limbajului de programare Java. \cite{thinkJava}
 
 Scopul limbajului de programare Java este de a face compatibile toate implementările. De-a lungul istoriei, marca înregistrată a limbajului Java pentru utilizare (Sun trademark) a insistat ca toate implementările să fie compatibile. Acest lucru a iscat un conflict legal cu Microsoft după ce Sun a susținut că implementarea realizată de cei de la Microsoft nu avea suport pentru RMI (Remote Method Invocation) sau JNI (Java Native Interface) și au adăugat unele caracteristici specifice doar platformei lor. Sun a dat în judecată Microsoft în anul 1997, iar în anul 2001 au câștigat daune în valoare de 20 de milioane de dolari. Microsoft a fost de asemenea obligată să respecte termenii licenței impuși de Sun. Microsoft nu a acceptat acest lucru și începând din anul 2001 ei nu mai livrează Java împreună cu sistemul de operare Windows.
 
@@ -142,7 +172,7 @@ Platforma independentă Java este esențială către Java EE (Enterprise Edition
 
 Programele scrise in limbajul Java sunt recunoscute pentru viteza scăzută și consumul mai mare de memorie față de cele scrise în limbajul C++. În orice caz, viteza de execuție a programelor scrise în Java s-a îmbunătățit semnificativ cu introducerea compilării “chiar la timp” în anul 1997/1998 pentru versiunea Java 1.1, adăugarea de noi caracteristici pentru limbaj suportă o mai bună analiză a codului (clase în clase, clasa StringBuilder, optimizări în mașina virtuală Java). Odată cu versiunea 1.5, performanța a fost îmbunătățită cu adăugarea pachetului java.util.concurrent. Această implementare a fost îmbunătățită ulterior cu versiunea 1.6.
 
-Unele platforme oferă suport hardware direct pentru Java, există microcontrollere care rulează Java în hardware și nu în mașina virtuală, și procesoare ARM care oferă suport pentru execuția codului de octeți Java.
+Unele platforme oferă suport hardware direct pentru Java, există microcontrollere care rulează Java în hardware și nu în mașina virtuală, și procesoare ARM care oferă suport pentru execuția codului de octeți Java. \cite{thinkJava}
 
 Java utilizează un Garbage Collector automat pentru organizarea memoriei în ciclul de viață al unui obiect. Programatorul determină când sunt create obiectele iar Java runtime este responsabil cu recuperarea memoriei odată ce obiectele nu mai sunt utilizate. Odată ce nu rămân referințe la obiecte, memoria neaccesibilă devine disponibilă pentru eliberare automată de către Garbage Collector. Ceva similar unei scurgeri de memorie poate să apară dacă codul implementat de programator stochează o referință la un obiect care nu mai este nevoie de el, de obicei apare acest lucru când obiectele de care nu mai sunt nevoie sunt stocate în containere care încă sunt utilizate. Dacă sunt executate operații asupra unui obiect neexistent, va fi aruncată excepția “Null Pointer Exception”. 
 
@@ -154,23 +184,30 @@ Java nu suportă operațiile aritmetice cu pointeri din C sau C++, unde adresele
 
 Ca și în C++ sau în alte limbaje de programare orientată obiect, variabilele tipurilor primitive de date din Java sunt stocate direct in câmpuri (pentru obiecte) sau în stack (pentru metode) și nu în zona de memorie heap. Această decizie a fost luată de designerii Java din motive de performanță.
 
-Limbajul de programare Java conține diferite tipuri de colectoare de deșeuri (garbage collectors). În mod implicit, HotSpot foloseste “parallel scavenge garbage collector”. În orice caz, sunt multe alte colectoare de deșeuri care pot fi utilizate pentru administrarea memoriei heap. Pentru 90\%  din aplicațiile Java, este suficient utilizarea colectorului de deșeuri “Concurrent Mark-Sweep (CMS)”. Oracle tinde să înlocuiască colectorul de deșeuri CMS cu colectorul “Garbage First Collector (G1) “.\cite{thinkJava}
+Limbajul de programare Java conține diferite tipuri de colectoare de deșeuri (garbage collectors). În mod implicit, HotSpot foloseste “parallel scavenge garbage collector”. În orice caz, sunt multe alte colectoare de deșeuri care pot fi utilizate pentru administrarea memoriei heap. Pentru 90\%  din aplicațiile Java, este suficient utilizarea colectorului de deșeuri “Concurrent Mark-Sweep (CMS)”. Oracle tinde să înlocuiască colectorul de deșeuri CMS cu colectorul “Garbage First Collector (G1) “. \cite{thinkJava}
 
-Limbajul de programare Java folosește, în mod nativ, setul de caractere Unicode. Acesta este un standard internațional care a dus la înlocuirea codului ASCII ( vechiul set de caractere). In setul Unicode, caracterele sunt reprezentate cu ajutorul a 2 octeți ( față de codul ASCII unde se pot reprezentate numai 256 de caractere, setul Unicode suportă reprezentarea a unui număr maxim de 65536 de caractere). Primele 256 de caractere din setul Unicode sunt la fel ca și cele din codul ASCII. Pentru referirea celorlalte caractere se folosește sintaxa \%uxxxx, unde xxxx reprezintă codul caracterului. O caracteristică importantă a setului de date Unicode o reprezintă și faptul că întreg intervalul de reprezentare a simbolurilor este împărțit în subintervale, purtând denumirea de blocuri. Exemple de blocuri: Basic Latin, Gothic, Greek, Arabic, Arrows, Currency, Mathematical, Musical, etc. \cite{cursPracticJava}
+Limbajul de programare Java folosește, în mod nativ, setul de caractere Unicode. Acesta este un standard internațional care a dus la înlocuirea codului ASCII (vechiul set de caractere). In setul Unicode, caracterele sunt reprezentate cu ajutorul a 2 octeți (față de codul ASCII unde se pot reprezentate numai 256 de caractere, setul Unicode suportă reprezentarea a unui număr maxim de 65536 de caractere). Primele 256 de caractere din setul Unicode sunt la fel ca și cele din codul ASCII. Pentru referirea celorlalte caractere se folosește sintaxa \%uxxxx, unde xxxx reprezintă codul caracterului. O caracteristică importantă a setului de date Unicode o reprezintă și faptul că întreg intervalul de reprezentare a simbolurilor este împărțit în subintervale, purtând denumirea de blocuri. Exemple de blocuri: Basic Latin, Gothic, Greek, Arabic, Arrows, Currency, Mathematical, Musical, etc. \cite{cursPracticJava}
 
-Abstract Window Toolkit (AWT) este o parte Java care se ocupă cu crearea interfețelor grafice și desenarea graficelor și a imaginilor. Este un set de clase create cu scopul de a pune la dispoziția programatorului tot ce are nevoie pentru a crea o interfață grafică pentru o aplicație Java. Majoritatea componentelor AWT sunt derivate din clasa de bază java.awt.Component. Acest lucru este ilustrat în figura de mai jos:
-\begin{center}
+Abstract Window Toolkit (AWT) este o parte Java care se ocupă cu crearea interfețelor grafice și desenarea graficelor și a imaginilor. Este un set de clase create cu scopul de a pune la dispoziția programatorului tot ce are nevoie pentru a crea o interfață grafică pentru o aplicație Java. Majoritatea componentelor AWT sunt derivate din clasa de bază java.awt.Component (Figura 3.1).
+
+\begin{figure}[!ht]
+	\centering
 	\includegraphics{awt}
+	\caption{Componentele AWT}
 	\cite{swingBook}
-\end{center}
+\end{figure}
 
 Java Foundation Classes (JFC) este alcătuită din cinci părți majore: AWT, Swing, Accesibility, Java 2D și Drag and Drop. Java 2D a devenit o parte integrală a AWT, Swing este construit pe baza AWT iar Accesibility este contruit în Swing. Cele cinci părți ale JFC nu sunt exclusiv independente, este de așteptat ca Swing să se muleze și mai mult cu AWT în versiunile viitoare. Prin urmare, AWT este nucleul JFC, ceea ce o face una dintre cele mai importante librării în Java 2.
 
-Swing este un set mare de componente începând de la etichete și până la tabele, arbori și documente complexe. Aproape toate componentele Swing sunt derivate de la o singură clasă, și anume JComponent. JComponent extinde clasa AWT Cointainer. Din acest motiv, Swing este cel mai bine descris ca fiind un strat care stă deasupra componentei AWT și nu un strat care o înlocuiește. Fiecare component AWT are un echivalent în Swing care începe cu prefixul "J". Singura excepție de la această regulă o face clasa AWT Canvas. Ca echivalent al acestei clase, se folosește JLabel, JPanel sau JComponent. De asemenea, există și clase Swing care nu au un reprezentant în AWT. Figura de mai jos reprezintă o mică parte din librăria Swing, dar această parte conține clasele cu care programatorii se confruntă cel mai mult. Celelalate clase Swing oferă suport și customizare pentru clasele aceastea:
-\begin{center}
-	\includegraphics{swing}
+Swing este un set mare de componente începând de la etichete și până la tabele, arbori și documente complexe. Aproape toate componentele Swing sunt derivate de la o singură clasă, și anume JComponent (Figura 3.2). JComponent extinde clasa AWT Cointainer. Din acest motiv, Swing este cel mai bine descris ca fiind un strat care stă deasupra componentei AWT și nu un strat care o înlocuiește. Fiecare component AWT are un echivalent în Swing care începe cu prefixul "J". Singura excepție de la această regulă o face clasa AWT Canvas. Ca echivalent al acestei clase, se folosește JLabel, JPanel sau JComponent. De asemenea, există și clase Swing care nu au un reprezentant în AWT.
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics{Swing}
+	\caption{Componentele principale Swing}
 	\cite{swingBook}
-\end{center}
+\end{figure}
+
 \section{MySQL}
 Un sistem de organizare a unei baze de date relaționale este o implementare necesară în foarte multe domenii, de la lucruri tradiționale la afaceri, cercetări, contexte educaționale, la aplicații foarte puternice și complexe ( de exemplu, motoarele de căutare pe internet). În ciuda faptului că o bază de date este foarte importantă pentru a administra și accesa resursele informative, multe organizații s-au aflat în imposibilitatea financiară de a avea un asemenea sistem. De-a lungul timpului, sistemele de baze de date au fost o propunere destul de scumpă, furnizorii cerând sume importante de bani atât pentru partea de software cât și pentru partea de suport. Deoarece un sistem de baze de date necesită echipament hardware substanțial pentru a rula cu o performanță decentă, costul total a devenit și mai mare. 
 
@@ -216,40 +253,46 @@ Distribuția MySQL include următoarele unelte:
 \end{itemize}
 \end{addmargin}
 \bigbreak
-Adițional software-ului disponibil împreună cu MySQL, MySQL este utilizat de mulți oameni talentați și capabili cărora le place să scrie software pentru a-și mări productivitatea și care sunt disponibili să împărtășească acest program. Rezultatul este unul benefic, accesul la o varietate largă de unele care fac MySQL să fie mai ușor de utilizat sau de integrat în diferite arii, cum ar fi dezvoltarea de site-uri web. \cite{mySqlDeveloperLibrary}
+Adițional software-ului disponibil împreună cu MySQL, MySQL este utilizat de un număr foarte mare de oameni cărora le place să scrie software și care sunt disponibili să împărtășească acest program. Rezultatul este unul benefic, accesul la o varietate largă de unelte care fac MySQL să fie mai ușor de utilizat sau de integrat în diferite arii, cum ar fi dezvoltarea de site-uri web. \cite{mySqlDeveloperLibrary}
 
 \section{Hibernate}
 Majoritatea proiectelor de dezvoltare software implică cel puțin o bază de date relațională. Baza majorității aplicațiilor comerciale este reprezentată de informație ordonată la scară mare, de exemplu: cataloage, liste de clienți, detalii de contracte, texte plublicate sau design arhitectural.
 
-Odată cu apariția World Wide Web ( rețea largă internațională), cererea pentru baze de date a crescut considerabil. Chiar dacă poate nu știu, clienții unei librării online, de exemplu, sau a unui ziar online necesită folosirea unei baze de date pentru stocarea lor. Undeva în adâncul aplicației, o bază de date este interogată și un răspuns al acesteia este oferit. 
+Odată cu apariția World Wide Web (rețea largă internațională), cererea pentru baze de date a crescut considerabil. Chiar dacă poate nu știu, clienții unei librării online, de exemplu, sau a unui ziar online necesită folosirea unei baze de date pentru stocarea lor. Undeva în adâncul aplicației, o bază de date este interogată și un răspuns al acesteia este oferit. 
 
-Hibernate este o arhitectură care simplifică utilizarea bazelor de date relaționale în aplicațiile realizate cu ajutorul limbajului de programare Java. Acest lucru este posibil reprezentând datele relaționale ca fiind simple obiecte, accesate în urma unei sesiuni. Hibernate prezintă două tipuri de interfete programabile: o interfață nativă Hibernate și The Java EE-standard Java Persistence API. 
+Hibernate este o arhitectură care simplifică utilizarea bazelor de date relaționale în aplicațiile realizate cu ajutorul limbajului de programare Java. Acest lucru este posibil reprezentând datele relaționale ca fiind simple obiecte, accesate în urma unei sesiuni. Hibernate prezintă două tipuri de interfete programabile: o interfață nativă Hibernate și Java EE-standard Java Persistence API. 
 
-Sunt situații în care utilizarea Hibernate este foarte utilă, dar sunt și situații pentru care abordarea tradițională reprezentată prin accesul direct via The Java Database Connectivity (JDBC) Api este recomandată. Totuși, Hibernate rămâne favorită pentru prima opțiune deoarece nu exclude nici folosirea simultană a mai multor abordări, deși trebuie avută foarte mare grijă atunci când datele sunt modificate cu ajutorul a două API-uri diferite.
+Sunt situații în care utilizarea Hibernate este foarte utilă, dar sunt și situații pentru care abordarea tradițională reprezentată prin accesul direct via Java Database Connectivity (JDBC) Api este recomandată. Totuși, Hibernate rămâne favorită pentru prima opțiune deoarece nu exclude nici folosirea simultană a mai multor abordări, deși trebuie avută foarte mare grijă atunci când datele sunt modificate cu ajutorul a două API-uri diferite.
 
 Hibernate nu a fost creat pentru a rezolva o problemă ci deoarece atunci când facem exact aceleași lucruri folosing JDBC, avem nevoie de o cantitate considerabilă de cod și de observarea atentă a diferitelor reguli (de exemplu, administrarea conexiunilor) ca să ne asigurăm că aplicațiia noastră nu produce o scurgere de resurse. 
 
-	
+Într-o lume ideală ar fi neimportant să luăm orice obiect Java și să îl persistăm într-o bază de date. Nicio introducere de cod nou nu va fi necesară pentru a realiza această caracteristică, nu vor apărea nici penalități de performanță iar rezultatul va fi portabil în totalitate.
 
-Într-o lume ideală ar fi neimportant să luăm orice obiect Java și să îl persistăm într-o bază de date. Nicio introducere de cod nou nu va fi necesară pentru a realiza această caracteristică, nu vor apărea nici penalități de performanță iar rezultatul va fi portabil în totalitate. În această lume ideală probabil că vom realiza operația respectivă în următorul mod:\\
-POJO pojo = new POJO();\\
-ORMSolution magic = ORMSolution.getInstance();\\
-magic.save(pojo);\\
+\begin{lstlisting}[frame=single, caption=Persistarea unui obiect Java]
+POJO pojo = new POJO();
+ORMSolution magic = ORMSolution.getInstance();
+magic.save(pojo);
+\end{lstlisting}
+
 Nu vor apărea surprize neplăcute, nu va fi nevoie de muncă în plus pentru a corela clasele cu tabelele bazei de date iar performanța nu va afectată.\cite{BeginningHibernate}
 
 Hibernate este foarte aproape de această lume ideală, cel puțin atunci când este comparată cu celelalte alternative, dar este nevoie de crearea unor fișiere de configurare și trebuie luate în calcul și problemele de performanță și sincronizare. Hibernate, în orice caz, își atinge scopul fundamental: permiterea stocării de obiecte de tip POJO (Plain Old Java Object) în baza de date. 
 
-Termenul comun pentru persistența directă a obiectelor Java este "obiect/ mapare relațională", care înseamnă maparea obiectelor Java direct la entitățile relaționale ale unei baze de date. Următoarea imagine arată modul în care Hibernate se mulează într-o aplicație, de la codul clientului și până la baza de date:
-\begin{center}
+Termenul comun pentru persistența directă a obiectelor Java este "obiect/ mapare relațională", care înseamnă maparea obiectelor Java direct la entitățile relaționale ale unei baze de date. IHibernate se mulează foarte ușor într-o aplicație, de la codul sursă și până la baza de date (Figura 3.3).
+
+\begin{figure}[!ht]
+	\centering
 	\includegraphics{Hibernate}
-\end{center}
-\cite{BeginningHibernate}
+	\caption{Modul în care Hibernate se mulează într-o aplicație}
+	\cite{BeginningHibernate}
+\end{figure}
+
 Comparativ cu JDBC, Hibernate furnizează o administrare a resurselor mai curată, acest lucru însemnând faptul că nu mai trebuie să ne îngrijorăm de conexiunile actuale ale bazei de date sau de a introduce blocuri gigantice de cod de tipul "try/catch/finally".
 Totuși, erorile nu vor dispărea, doar că nu va mai trebui să ne ocupăm noi de ele. În orice caz, aceste condiții sunt excepționale (adică ne ocupăm doar de excepțiile de care trebuie să ne ocupăm, nu de fiecare excepție care ar necesita tratament).
 
 Hibernate manipulează maparea obiectelor la tabelul bazei de date incluzând construirea schemei bazei de date dacă o configurăm să facă acest lucru. Nu necesită construirea unui tabel pentru fiecare tip de obiect, putem să mapăm foarte ușor un obiect la mai multe tabele. Și, de asemenea, Hibernate administrează și relațiile dintre obiecte, de exemplu: dacă am adăugat o listă de adrese unei persoane, putem foate ușor să avem adresele stocate intr-un al doilea tabel, construit și organizat de Hibernate.
 
-Pornirea Hibernate durează puțin mai mult decât codul direct JDBC. Oricum, timpul de inițializare a sistemului nu este o măsură foarte semnificativă. Majoritatea aplicațiilor au perioade foarte lungi de rulare iar procentul de timp petrecut în procesul de inițializare a librăriei Hibernate este nesemnificativ comparativ cu performanța actuală a aplicațiilor. Avantajele Hibernate în întreținerea și administrarea obiectelor mai mult decât compensează timpul utilizat în configurare și inițializare. Ca de obicei, cel mai bun mod de a evolua performanțele unei aplicații este de a testa și a analiza aplicația propriu-zisă.
+Pornirea Hibernate durează puțin mai mult decât codul direct JDBC. Oricum, timpul de inițializare a sistemului nu este o măsură foarte semnificativă. Majoritatea aplicațiilor au perioade foarte lungi de rulare iar procentul de timp petrecut în procesul de inițializare Hibernate este nesemnificativ comparativ cu performanța actuală a aplicațiilor. Hibernate prezintă avantaje în întreținerea și administrarea obiectelor, dar prezintă și dezavantaje la timpul utilizat în configurare și inițializare. Ca de obicei, cel mai bun mod de a evolua performanțele unei aplicații este de a testa și a analiza aplicația propriu-zisă.
 
 Orice obiect Java capabil de a fi persistat la o bază de date este un candidat pentru a fi persistat cu ajutorul Hibernate. Prin urmare, Hibernate este o înlocuire naturală pentru soluțiile ad-hoc (ca și JDBC de examplu) sau un motor de persistare pentru o aplicație care nu are deja încorporată o bază de date. În plus, prin alegerea Hibernate, utilizatorul nu este legat de nicio decizie (schimbarea designului, de exemplu) pentru obiectele aflate în aplicație, incluzând care bază de date să fie folosită pentru Hibernate.
 
@@ -257,7 +300,7 @@ După cum era de așteptat, Hibernate are nevoie de cineva să îi spună care t
 
 Integrarea Hibernate în aplicația Java se realizează relativ ușor. Designer-ii Hibernate au evitat câteva dintre cele mai comune capcane și probleme care existau cu soluțiile persistenței Java și au creat o arhitectură curată și puternică în același timp. Practic, acest lucru înseamnă că nu e nevoie să rulăm Hibernate în interiorul unui container sau schelet Java EE. Rularea Hibernate necesită doar instalarea versiunii Java 6 sau versiuniile următoare.
 
-La început, adăugarea Hibernate în proiectul Java poate să intimideze utilizatorul deoarece distribuția include un set foarte mare de librării. Pentru a avea prima aplicație Hibernate, trebuie setate referințele bazei de date și configurările Hibernate, care pot include maparea obiectelor la baza de date. De asemenea, trebuie creată și clasa de tip POJO împreună cu toate adnotările folosite în procesul de mapare. După ce au fost făcute toate acestea de mai sus, trebuie scrisă partea logică din spatele aplicației care utilizează Hibernate în vederea obținerii unor rezultate. Odată ce procesul de integrare Hibernate într-o aplicație Java este înțeles, chestiile de bază se aplică pentru orice proiect care folosește Hibernate.
+La început, adăugarea Hibernate în proiectul Java poate să intimideze utilizatorul deoarece distribuția include un set foarte mare de resurse. Pentru a avea prima aplicație Hibernate, trebuie setate referințele bazei de date și configurările Hibernate, care pot include maparea obiectelor la baza de date. De asemenea, trebuie creată și clasa de tip POJO împreună cu toate adnotările folosite în procesul de mapare. După ce au fost făcute toate acestea de mai sus, trebuie scrisă partea logică din spatele aplicației care utilizează Hibernate în vederea obținerii unor rezultate. Odată ce procesul de integrare Hibernate într-o aplicație Java este înțeles, chestiile de bază se aplică pentru orice proiect care folosește Hibernate.
 
 Una dintre caracteristicile cheie a Hibernate este faptul că Hibernate nu interferează cu aplicația Java mai mult decât este nevoie, acest lucru a fost posibil datorită designer-ilor care au creat Hibernate. 
 
@@ -268,13 +311,80 @@ Pentru a configura și integra Hibernate este necesar parcurgerea următorilor p
 	\item Indentificarea proprietăților clasei POJO care trebuie persistate (mapate)
 	\item Adnotarea fiecărei proprietăți pentru a mapa obiectele Java la numele coloanelor bazei de date
 	\item Crearea schemei bazei de date folosing unealta pentru exportarea schemei, folosind o bază de date actuală sau crearea propriei scheme a bazei de date.
-	\item Adăugarea librăriilor Hibernate în aplicația Java.
+	\item Adăugarea seturilor de resurse Hibernate în aplicația Java.
 	\item Crearea unui fișier XML de configurare Hibernate care indică spre baza de date și spre clasele mapate acesteia.
 	\item În aplicația Java, trebuie creat un obiect de tip Hibernate Configuration care face referire la fișierul de configurare XML.
 	\item Tot în aplicația Java, trebuie creat un obiect de tipul Hibernate SessionFactory din obiectul Configuration.
 	\item Restabilește obiectele de tip HibernateSession din sesiunea FactorySession și scrie datele pentru accesul logic al aplicației ( crează, șterge, actualizează,etc).\cite{BeginningHibernate}
 \end{enumerate}
 \end{addmargin}
+
+\begin{lstlisting}[frame=single, caption=Maparea la numele coloanelor bazei de date cu ajutorul adnotărilor]
+@Entity
+@NamedQueries({
+@NamedQuery(name="Factura.findAll",
+query="SELECT f FROM Factura f"),
+})
+
+public class Factura {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
+	
+@Column(name="UTILITATE") private String utilitate;
+@Column(name="NR_FACTURA") private String nrFactura;
+@Column(name="COMPANIE") private String companie;	
+@Column(name="DATA_EMITERII") private Date dataEmiterii;	
+@Column(name="DATA_SCADENTA") private Date dataScadenta;	
+@Column(name="TOTAL_PLATA") private float totalPlata;	
+@Column(name="STATUS") private String status;	
+@Column(name = "LINK") private String link;
+
+	public String getNrFactura() {return nrFactura;}
+	
+	public void setNrFactura(String nrFactura) {
+	this.nrFactura = nrFactura;}
+
+public String getCompanie() {return companie;}
+
+public void setCompanie(String companie) {
+	this.companie = companie;}
+
+public Date getDataEmiterii() {return dataEmiterii;}
+
+public void setDataEmiterii(Date dataEmiterii) {
+this.dataEmiterii = dataEmiterii;}
+
+public Date getDataScadenta() {return dataScadenta;}
+
+public void setDataScadenta(Date dataScadenta) {
+	this.dataScadenta = dataScadenta;}
+
+public float getTotalPlata() {return totalPlata;}
+
+public void setTotalPlata(float totalPlata) {
+	this.totalPlata = totalPlata;}
+
+public String getStatus() {return status;}
+
+public void setStatus(String status) {
+	this.status = status;}
+
+public Long getId() {return id;}
+
+public void setId(Long id) {
+	this.id = id;}
+
+public String getLink() {return link;}
+
+public void setLink(String link) {
+this.link = link;}
+
+public String getUtilitate() {return utilitate;}
+
+public void setUtilitate(String utilitate) {
+	this.utilitate = utilitate;}}
+\end{lstlisting}
 
 Utilizatorul poate chema Hibernate direct din aplicația Java sau poate accesa Hibernate prin intermediul unei alte arhitecturi. Putem chema Hibernate prin intermediul unei aplicații de tip Swing, unui servlet, portlet, unei pagini JSP sau prin intermediul oricărei aplicații Java care are acces la o bază de date. De obicei, Hibernate este utilizat pentru a crea un înveliș pentru accesul de date al aplicației sau pentru a înlocui un înveliș existent.
 
@@ -286,7 +396,7 @@ Neținând cont de mediul în care este integrat Hibernate, anumite cerințe ră
 
 \section{Apache PDFBox}
 
-Apache PDFBox este o librărie pentru limbajul de programare Java de tip Open Source care lucrează cu documentele de tip PDF. Permite crearea de documente noi de tip PDF, manipularea documentelor existente cât și abilitatea de a extrage conținutul documentelor. Apache PDFBox include, de asemenea, importante utilități pentru linia de comandă. Apache PDFBox este publicat sub licența Apache License v2.0.\cite{PDFBoxOfficial}
+Apache PDFBox reprezintă un set de resurse pentru limbajul de programare Java de tip Open Source care lucrează cu documentele de tip PDF. Permite crearea de documente noi de tip PDF, manipularea documentelor existente cât și abilitatea de a extrage conținutul documentelor. Apache PDFBox include, de asemenea, importante utilități pentru linia de comandă. Apache PDFBox este publicat sub licența Apache License v2.0.\cite{PDFBoxOfficial}
 
 Apache PDFBox conține următoarele componente:
 \begin{addmargin}[4em]{1em}
@@ -298,13 +408,15 @@ Apache PDFBox conține următoarele componente:
 \end{itemize}
 \end{addmargin}
 
-Dezvoltarea PDFBox a început în anul 2002 în cadrul companiei SourceForge de către Ben Litchfield care a vrut să extragă textul din fișierele PDF pentru librăria Lucene. A devenit parte a proiectului Apache Incubator în anul 2008 iar în anul 2009 a ajuns unul dintre proiectele de top ale companiei. În anul 2015, ApachePDFBox a fost numit partener a organizației Open Source Partner Organization de către PDF Association.
+Dezvoltarea PDFBox a început în anul 2002 în cadrul companiei SourceForge de către Ben Litchfield care a vrut să extragă textul din fișierele PDF pentru resursa Lucene. A devenit parte a proiectului Apache Incubator în anul 2008 iar în anul 2009 a ajuns unul dintre proiectele de top ale companiei. În anul 2015, ApachePDFBox a fost numit partener a organizației Open Source Partner Organization de către PDF Association.
 
 Una dintre caracteristicile importante a uneltei Apache PDFBox este aceea de a extrage rapid și precis text dintr-o varietate de documente de tip PDF. Această funcționalitate este încapsulată în org.apache.pdfbox.util.PDFTextStripper și poate fii executat foarte ușor din linia de comandă. 
 
-Lucene este o librărie de căutare a textului de tip Open Source făcând parte din proiectul Apache Jakarta Project. Pentru ca Lucene să poată indexa un document PDF, trebuie prima dată să fie convertit sub formă de text. PDFBox dispune de o abordare simplă pentru a adăuga documentele PDF într-un index Lucene.\\
-\\
+Lucene este reprezentat de un set de resurse destinate căutării textului de tip Open Source făcând parte din proiectul Apache Jakarta Project. Pentru ca Lucene să poată indexa un document PDF, trebuie prima dată să fie convertit sub formă de text. PDFBox dispune de o abordare simplă pentru a adăuga documentele PDF într-un index Lucene.
+
+\begin{lstlisting}[frame=single, caption=Adăugarea documentelor PDF într-un index Lucene]
 Document luceneDocument = LucenePDFDocument.getDocument( ... );\\
+\end{lstlisting}
 
 După ce s-a creat obiectul de tip Lucene Document, poate fii adăugat la indexul Lucene în același mod ca și când ar fi fost creat dintr-un fișier text sau HTML. LucenePDFDocument extrage automat o varietate de câmpuri de metadate din fișierul PDF care sunt adăugate indexului Lucene, javadoc afișând detaliile în acele câmpuri. Această abordare este foarte simplă și este suficientă pentru majoritatea utilizatorilor, în caz contrar se pot utiliza tehnici mai avansate de extragere a textului.\cite{PDFBoxOfficial}
 
@@ -329,7 +441,7 @@ Există o întreagă dezbatere pe tema "Care librărie este mai bună dintre PDF
 
 \section{Selenium Remote Control}
 
-Selenium Remote Control este o librărie destinată automatizării cu interfața grafică, permițând programatorilor și tester-ilor să automatizeze interacțiunea cu o aplicație de tip WAUT (Web Application Under Test). Automatizarea este posibilă cu ajutorul librăriilor distribuite de Selenium care au suport în mai multe limbaje de programare.
+Selenium Remote Control este reprezentat de un set de resurse destinate automatizării  comunicării cu interfața grafică, permițând programatorilor și tester-ilor să automatizeze interacțiunea cu o aplicație de tip WAUT (Web Application Under Test). Automatizarea este posibilă cu ajutorul seturilor de resurse distribuite de Selenium care au suport în mai multe limbaje de programare.
 
 În termeni de design, Selenium RC folosește limbajul generic JavaScript numit Selenium Core. Totuși, pentru a utiliza limbajul generic JavaScript pentru ca aplicațiile WAUT să fie compatibile cu orice browser, trebuie să respecte o anumită poliță de securitate numită Same-Origin Policy. Fiecare browser impune această poliță site-urilor care sunt încărcate cu ajutorul lui. 
 
@@ -340,7 +452,7 @@ Ca să depășească această restricție de securitate, Selenium RC se comport�
 În mod normal, Selenium funcționează în felul următor:
 \begin{addmargin}[4em]{1em}
 	\begin{enumerate}
-		\item Testerul sau programatorul, prin intermediul scriptului de test, poate să comande serverul Selenium să execute diferite operații pe aplicația WAUT 	într-un anumit browser. Modul în care utilizatorul comandă serverul Selenium este prin intermediul librăriilor distribuite de Selenium. Aceste librării sunt distribuite în diferite limbaje de programare, printre care amintim Java, Ruby, Python, PHP, etc. Un test de script va conține un set de comenzi pentru a testa diferite scenarii ale aplicației WAUT. 
+		\item Testerul sau programatorul, prin intermediul scriptului de test, poate să comande serverul Selenium să execute diferite operații pe aplicația WAUT 	într-un anumit browser. Modul în care utilizatorul comandă serverul Selenium este prin intermediul seturilor de resurse distribuite de Selenium. Aceste seturi sunt distribuite în diferite limbaje de programare, printre care amintim Java, Ruby, Python, PHP, etc. Un test de script va conține un set de comenzi pentru a testa diferite scenarii ale aplicației WAUT. 
 		\item Odată ce serverul Selenium a primit comanda de la script, va lansa browserul preferat de scriptul de test și, în timp ce browserul se lansează, va injecta Selenium Core în browser.
 		\item La încărcarea în browser, Selenium Core execută toate comenzile din scriptul de test. Browserul nu restricționează aceste comenzi deoarece Selenium Core și aplicația WAUT sunt tratate ca și parte din același domeniu.
 		\item Urmează partea HTTP proxy a serverului Selenium. Toate cererile și răspunsurile browserului pentru aplicația WAUT sunt direcționate la serverul web actual prin intermediul serverului Selenium, deoarece browserul crede că Selenium este parte a aplicației WAUT. 
@@ -348,14 +460,18 @@ Ca să depășească această restricție de securitate, Selenium RC se comport�
 	\end{enumerate}
 \end{addmargin}
 
-Pentru a inițializa un driver avem nevoie să declarăm un profil al browserului și să creem driverul având preferințele profilului respectiv.\\
-WebDriverWait wait;\\
-WebDriver driver;\\
-File pathToBinary = new File("/Applications/Firefox.app/Contents/MacOS/firefox"); \\
-FirefoxBinary ffBinary = new FirefoxBinary(pathToBinary); \\
-FirefoxProfile firefoxProfile = new FirefoxProfile(); \\
-driver = new FirefoxDriver(ffBinary, firefoxProfile);\\
+Pentru a inițializa un driver avem nevoie să declarăm un profil al browserului și să creem driverul având preferințele profilului respectiv.
+
+\begin{lstlisting}[frame=single, caption=Inițializarea unui driver web]
+WebDriverWait wait; WebDriver driver;
+File pathToBinary = new File("/Applications/Firefox.app/Contents/
+						MacOS/firefox"); 
+FirefoxBinary ffBinary = new FirefoxBinary(pathToBinary); 
+FirefoxProfile firefoxProfile = new FirefoxProfile(); 
+driver = new FirefoxDriver(ffBinary, firefoxProfile);
 wait = new WebDriverWait(driver, 20);
+\end{lstlisting}
+
 \chapter{Aplicația}
 \section{Descriere}
 
@@ -373,9 +489,9 @@ O altă opțiune disponibilă este aceea de a vizualiza factura. Prin simpla ap�
 
 O factură poate fi ștearsă din baza de date cu ajutorul butonului "Șterge factura". În momentul apăsării butonului, se extrage numărul facturii selectate și în baza de date este ștearsă factura care are numărul respectiv.
 
-Utilizatorul poate să genereze rapoarte ( detalii despre câți bani s-au cheltuit în total pe telefonie, electricitate, cât s-a cheltuit în fiecare an pentru fiecare categorie și așa mai departe). Rapoartele sunt generate prin apăsarea butonului "Generează rapoarte".
+Utilizatorul poate să genereze rapoarte (detalii despre câți bani s-au cheltuit în total pe telefonie, electricitate, cât s-a cheltuit în fiecare an pentru fiecare categorie și așa mai departe). Rapoartele sunt generate prin apăsarea butonului "Generează rapoarte".
 
-Diagrama de tip Use Case (Figura 3.1) este sugestivă pentru operațiile care pot fi efectuate de către utilizator.
+Diagrama de tip Use Case (Figura 4.1) este sugestivă pentru operațiile care pot fi efectuate de către utilizator.
 
 \begin{figure}[!ht]
 	\centering
@@ -400,37 +516,54 @@ Baza de date aleasă este MySQL. Ea conține un tabel denumit "Factură" și la 
 	\end{itemize}
 \end{addmargin}
 
-Tabelul a fost creat prin introducerea unei sintaxe de tip MySQL. Sintaxa respectivă este:\\\\
-CREATE TABLE 'Factura' (\\
-'id' bigint(20) NOT NULL AUTO\_INCREMENT,\\
-'UTILITATE' varchar(20) DEFAULT NULL,\\
-`COMPANIE` varchar(255) DEFAULT NULL,\\
-`DATA\_EMITERII` datetime DEFAULT NULL,\\
-`DATA\_SCADENTA` datetime DEFAULT NULL,\\
-`NR\_FACTURA` varchar(255) DEFAULT NULL,\\
-`STATUS` varchar(255) DEFAULT NULL,\\
-`TOTAL\_PLATA` float DEFAULT NULL,\\
-`LINK` varchar(255) DEFAULT NULL,\\
-PRIMARY KEY (`id`)\\
-) ENGINE=InnoDB AUTO\_INCREMENT=55 DEFAULT CHARSET=latin1;\\
+Tabelul a fost creat prin introducerea unei sintaxe de tip MySQL.
+\begin{lstlisting}[frame=single, caption=Crearea tabelului bazei de date]
+CREATE TABLE 'Factura' (
+'id' bigint(20) NOT NULL AUTO\_INCREMENT,
+'UTILITATE' varchar(20) DEFAULT NULL,
+`COMPANIE` varchar(255) DEFAULT NULL,
+`DATA\_EMITERII` datetime DEFAULT NULL,
+`DATA\_SCADENTA` datetime DEFAULT NULL,
+`NR\_FACTURA` varchar(255) DEFAULT NULL,
+`STATUS` varchar(255) DEFAULT NULL,
+`TOTAL\_PLATA` float DEFAULT NULL,
+`LINK` varchar(255) DEFAULT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO\_INCREMENT=55 DEFAULT CHARSET=latin1;
+\end{lstlisting}
 
-Fereastra principală este alcătuită dintr-un JFrame care înglobează mai multe elemente (JTable, JButton, JPanel, Font) (Figura 3.2).
+Fereastra principală este alcătuită dintr-un JFrame care înglobează mai multe elemente (JTable, JButton, JPanel, Font)
 
-\begin{figure}[!ht]
-	\centering
-	\includegraphics{FereastraPrincipala}
-	\caption{Declararea elementelor ferestrei principale}
-\end{figure}
+\begin{lstlisting}[frame=single, caption=Elementele ferestrei principale]
+public class MainFrame extends JFrame {
 
-De asemenea, mai conține două variabile de tip boolean care marchează tipul de acțiune selectat la apăsarea unui buton. Cu ajutorul lor se realizează operațiile de adăugare, descărcare și achitare a unei facturi. (Figura 3.3)
+/* fereastra de baza */
+private static MainFrame frame = null;
 
-\begin{figure}[!ht]
-	\centering
-	\includegraphics{VariabileAjutatoare}
-	\caption{Variabilele ajutătoare}
-\end{figure}
+// tabelul bazei de date
+private static JTable tabel;
 
-Atunci când aplicația rulează, practic rulează fereastra principală. Facturile care sunt plătite se vor afișa cu culoarea verde iar cele care nu sunt plătite se vor afișa cu culoarea roșie (Figura 3.4).
+/* campul de text pentru cautarea facturilor */
+JTextField textSearchFactura;
+
+/* butoanele pentru actiuni */
+JButton butAdaugaFactura, butStergeFactura, butPlatesteFactura, 
+butDownloadFactura,butVizualizareFactura,butMarcarePlata,
+butGenereazaRapoarte;
+
+/* partea de sus a ferestrei unde sunt adaugate butoanele */
+JPanel panelSus;
+
+\end{lstlisting}
+
+De asemenea, mai conține două variabile de tip boolean care marchează tipul de acțiune selectat la apăsarea unui buton. Cu ajutorul lor se realizează operațiile de adăugare, descărcare și achitare a unei facturi.\\
+
+\begin{lstlisting}[frame=single, caption=Variabilele ajutătoare care ne informează despre acțiunea aleasă]
+static boolean boAdaugaFactura = false;
+static boolean boDownloadFactura = false;
+\end{lstlisting}
+
+În momentul pornirii aplicației, fereastra principală se va deschide și va fi afișată pe ecran. Facturile care sunt plătite se vor afișa cu culoarea verde iar cele care nu sunt plătite se vor afișa cu culoarea roșie (Figura 4.2).
 
 \begin{figure}[!ht]
 	\centering
@@ -440,42 +573,44 @@ Atunci când aplicația rulează, practic rulează fereastra principală. Factur
 
 Butonului "Adaugă Factura" îi este adăugat o acțiune de tipul ActionListener care se declanșează în momentul apăsării acestuia. ActionListener-ul va seta cu valoarea TRUE variabila "boAdaugaFactura" și va rula fereastra unde sunt afișate toate companiile.
 
-Fereastra "Companii" (Figura 3.5) este alcătuită din 6 butoane, un buton pentru fiecare companie. Imaginile de fundal ale butoanelor sunt reprezentate de siglele companiilor. Fiecare companie are asociat un buton care la rândul lui are selectat ca și imagine de fundal sigla companiei respective. Fiecare buton are, de asemenea, mapat un ActionListener pentru tratarea evenimentului de apăsare a acestuia.  În momentul apăsării unui buton (alegerea unei companii) se verifică opțiunea selectată anterior, adică opțiunea de adăugare (variabila "boAdaugaFactura" are valoare TRUE) sau opțiunea de descărcare (variabila "boDescarcaFactura" are valoarea TRUE). Dacă opțiunea de adăugare a unei facturi este cea selectată, un element de tipul JFIleChooser (Figura 3.9) va apărea pe ecran, acesta permițându-ne să alegem fișierul de tip PDF pe care vrem să îl introducem în baza de date. 
-După ce vom selecta fișierul dorit și vom confirma selectarea acestuia, prin intermediul Apache PDFBox va începe procesul de extragere a textului din fișierul respectiv. Se crează o instanță de tip PDFParser care va primi ca paramentru calea către fișierul respectiv, după care va parcurge fișierul și îi va stoca tot conținutul de text într-o singură variabilă de tip String. După aceea se va împărți textul pe rânduri, pentru a fi mai ușor de extras datele necesare din el. \\\\
-PDFTextStripper pdfStripper = null;\\
-PDDocument pdDoc = null;\\
-COSDocument cosDoc = null;\\
-File file = new File(filePath);\\
-PDFParser parser = new PDFParser(new FileInputStream(file));\\
-parser.parse();\\
-cosDoc = parser.getDocument();\\
-pdfStripper = new PDFTextStripper();\\
-pdDoc = new PDDocument(cosDoc);\\
-pdfStripper.setStartPage(1);\\
-pdfStripper.setEndPage(2);\\
-String parsedText = pdfStripper.getText(pdDoc);\\
-String lines[] = parsedText.split("\%\%r?\%\%n");\\
+Fereastra "Companii" (Figura 4.3) este alcătuită din 6 butoane, un buton pentru fiecare companie. Imaginile de fundal ale butoanelor sunt reprezentate de siglele companiilor. Fiecare companie are asociat un buton care la rândul lui are selectat ca și imagine de fundal sigla companiei respective. Fiecare buton are, de asemenea, mapat un ActionListener pentru tratarea evenimentului de apăsare a acestuia.  În momentul apăsării unui buton (alegerea unei companii) se verifică opțiunea selectată anterior, adică opțiunea de adăugare (variabila "boAdaugaFactura" are valoare TRUE) sau opțiunea de descărcare (variabila "boDescarcaFactura" are valoarea TRUE). Dacă opțiunea de adăugare a unei facturi este cea selectată, un element de tipul JFIleChooser (Figura 4.7) va apărea pe ecran, acesta permițându-ne să alegem fișierul de tip PDF pe care vrem să îl introducem în baza de date. 
+După ce vom selecta fișierul dorit și vom confirma selectarea acestuia, prin intermediul Apache PDFBox va începe procesul de extragere a textului din fișierul respectiv. Se crează o instanță de tip PDFParser care va primi ca paramentru calea către fișierul respectiv, după care va parcurge fișierul și îi va stoca tot conținutul de text într-o singură variabilă de tip String. După aceea se va împărți textul pe rânduri, pentru a fi mai ușor de extras datele necesare din el.
+\begin{lstlisting}[frame=single, caption=Extragerea textului dintr-un fișier de tip PDF]
+PDFTextStripper pdfStripper = null;
+PDDocument pdDoc = null;
+COSDocument cosDoc = null;
+File file = new File(filePath);
+PDFParser parser = new PDFParser(new FileInputStream(file));
+parser.parse();
+cosDoc = parser.getDocument();
+pdfStripper = new PDFTextStripper();
+pdDoc = new PDDocument(cosDoc);
+pdfStripper.setStartPage(1);
+pdfStripper.setEndPage(2);
+String parsedText = pdfStripper.getText(pdDoc);
+String lines[] = parsedText.split("\%\%r?\%\%n");
+\end{lstlisting}
 
- După ce s-au extras datele necesare, se va crea o clasă de tip Factură (clasă ce este mapată prin Hibernate la baza de date) și se setează atributele acesteia cu valorile extrase din textul parcurs. După aceea se realizează conexiunea la baza de date prin intermediul unui obiect de tip EntityManager după care se introduce obiectul de tip Factura în baza de date. Dacă va apărea o eroare la conexiunea cu baza de date, utilizatorul va fi informat printr-o eroare (Figura 3.10). \\\\
- Factura f=new Factura();\\
- f.setNrFactura(nr);\\
- f.setUtilitate(utilitate);\\
- f.setCompanie(companie);\\
- f.setDataEmiterii(date);\\
- f.setDataScadenta(date2);\\
- f.setTotalPlata(total);\\
- f.setStatus(status);\\
- f.setLink(link);\\
- String PERSISTENCE\_UNIT\_NAME = "persistenceIG";\\
- EntityManagerFactory factory;\\
- factory = Persistence.createEntityManagerFactory(PERSISTENCE\_UNIT\_NAME);\\
- EntityManager em = factory.createEntityManager();\\
- EntityTransaction et = em.getTransaction();\\
- et.begin();\\
- em.persist(f);\\
- et.commit();\\
+ După ce s-au extras datele necesare, se va crea o clasă de tip Factură (clasă ce este mapată prin Hibernate la baza de date) și se setează atributele acesteia cu valorile extrase din textul parcurs. După aceea se realizează conexiunea la baza de date prin intermediul unui obiect de tip EntityManager după care se introduce obiectul de tip Factura în baza de date. Dacă va apărea o eroare la conexiunea cu baza de date, utilizatorul va fi informat printr-un mesaj de eroare (Figura 4.8).
+ \begin{lstlisting}[frame=single, caption=Introducerea unei facturi în baza de date]
+ Factura f=new Factura();
+ f.setNrFactura(nr);f.setUtilitate(utilitate);
+ f.setCompanie(companie); 
+ f.setDataEmiterii(date);
+ f.setDataScadenta(date2);
+ f.setTotalPlata(total);
+ f.setStatus(status);
+ f.setLink(link);
+ String PERSISTENCE\_UNIT\_NAME = "persistenceIG";
+ EntityManagerFactory factory;
+ factory = Persistence.createEntityManagerFactory(
+					 PERSISTENCE\_UNIT\_NAME);
+ EntityManager em = factory.createEntityManager();
+ EntityTransaction et = em.getTransaction();
+ et.begin(); em.persist(f); et.commit();
+ \end{lstlisting}
  
- Un mesaj va apărea pe ecran și ne va informa unul din următoarele lucruri: factura este adăugată cu succes (Figura 3.6), factura este deja existentă în baza de date (Figura 3.7) sau că a apărut o eroare la extragerea textului din fișierul respectiv (Figura 3.8). De obicei, acest lucru se întâmplă când a fost selectat fișierul greșit, care nu corespunde companiei alese. În cazul în care factura a fost introdusă cu succes în baza de date, fereastra principală se va reîmprospăta și noua factură introdusă va exista în tabelul bazei de date. În caz contrar, nu se va întâmpla nimic, utilizatorul putând să reia operația sau să aleagă alta.
+ Un mesaj va apărea pe ecran și ne va informa unul din următoarele lucruri: factura este adăugată cu succes (Figura 4.4), factura este deja existentă în baza de date (Figura 4.5) sau că a apărut o eroare la extragerea textului din fișierul respectiv (Figura 4.6). De obicei, acest lucru se întâmplă când a fost selectat fișierul greșit, care nu corespunde companiei alese. În cazul în care factura a fost introdusă cu succes în baza de date, fereastra principală se va reîmprospăta și noua factură introdusă va exista în tabelul bazei de date. În caz contrar, nu se va întâmpla nimic, utilizatorul putând să reia operația sau să aleagă alta.
 \begin{figure}[!ht]
 	\centering
 	\includegraphics{Companii}
@@ -509,14 +644,18 @@ String lines[] = parsedText.split("\%\%r?\%\%n");\\
 \begin{figure}[!ht]
 	\centering
 	\includegraphics{EroareConexiune}
-	\caption{Elementul de tip JFileChooser}
+	\caption{Mesajul prin care utilizatorul este înștiințat de existența unei erori la conexiunea cu baza de date}
 \end{figure}
 
-Butonul "Șterge Factura" are, de asemenea, mapat un ActionListener pentru gestionarea evenimentelor. Prin simpla apăsare a butonului, acesta se declanșează. Primul pas este acela de a verifica dacă este selectată o singură factură, cu ajutorul funcției "getSelectedRows()" care returnează un tablou conținând indecșii rândurilor selectate din tabel. Dacă lungimea tabloului este 1, atunci este selectată o singură factură. În cazul în care nu este selectată o singură factură, un mesaj de atenționare va fi afișat pe ecran (Figura 3.11). Dacă este selectată o singură factură, un mesaj de întrebare va apărea pe ecran în care utilizatorul va fi întrebat dacă este sigur că vrea să șteargă factura (Figura 3.12). Dacă acesta răspunde afirmativ, se va realiza o conexiune la baza de date, se va stoca numărul facturii selectate și se va șterge factura cu acel număr din baza de date. Dacă va apărea o eroare la conexiunea cu baza de date, utilizatorul va fi informat printr-o eroare (Figura 3.10). \\\\
-Query query = em.createQuery("DELETE FROM Factura f WHERE f.nrFactura = :nrFact");\\
-query.setParameter("nrFact", nrFactura);\\
+Butonul "Șterge Factura" are, de asemenea, mapat un ActionListener pentru gestionarea evenimentelor. Prin simpla apăsare a butonului, acesta se declanșează. Primul pas este acela de a verifica dacă este selectată o singură factură, cu ajutorul funcției "getSelectedRows()" care returnează un tablou conținând indecșii rândurilor selectate din tabel. Dacă lungimea tabloului este 1, atunci este selectată o singură factură. În cazul în care nu este selectată o singură factură, un mesaj de atenționare va fi afișat pe ecran (Figura 4.9). Dacă este selectată o singură factură, un mesaj de întrebare va apărea pe ecran în care utilizatorul va fi întrebat dacă este sigur că vrea să șteargă factura (Figura 4.10). Dacă acesta răspunde afirmativ, se va realiza o conexiune la baza de date, se va stoca numărul facturii selectate și se va șterge factura cu acel număr din baza de date. Dacă va apărea o eroare la conexiunea cu baza de date, utilizatorul va fi informat printr-o eroare (Figura 4.8). \\\\\\\\
 
-Dacă utilizatorul se răzgândește și nu vrea să mai șteargă factura selectată, atunci nu se va întâmpla nimic, mesajul de întrebare va dispărea de pe ecran. Dacă factura este ștearsă cu succes, un mesaj de confirmare va fi afișat pe ecran (Figura 3.13), după care se va reîmprospăta fereastra principală, factura ștearsă ne mai existând în baza de date. În caz contrar, un mesaj de eroare (Figura 3.14) va înștiința utilizatorul cu privire la acest lucru.
+\begin{lstlisting}[frame=single, caption=Ștergerea unei facturi din baza de date]
+Query query = em.createQuery("DELETE FROM Factura f
+				WHERE f.nrFactura = :nrFact");
+query.setParameter("nrFact", nrFactura);
+\end{lstlisting}
+
+Dacă utilizatorul se răzgândește și nu vrea să mai șteargă factura selectată, atunci nu se va întâmpla nimic, mesajul de întrebare va dispărea de pe ecran. Dacă factura este ștearsă cu succes, un mesaj de confirmare va fi afișat pe ecran (Figura 4.11), după care se va reîmprospăta fereastra principală, factura ștearsă ne mai existând în baza de date. În caz contrar, un mesaj de eroare (Figura 4.12) va înștiința utilizatorul cu privire la acest lucru.
 
 \begin{figure}[!ht]
 	\centering
@@ -542,19 +681,26 @@ Dacă utilizatorul se răzgândește și nu vrea să mai șteargă factura selec
 	\caption{Mesajul prin care utilizatorul este informat că a avut loc o eroare la ștergerea unei facturi}
 \end{figure}
 
-Descărcarea unei facturi se realizează prin apăsarea butonului "Descarcă Factura", această acțiune declanșând ActionListener-ul butonului respectiv.  Primul pas este acela de a marca acțiunea aleasă de utilizator, și anume de a seta variabila "boDownloadFactura" cu valoarea TRUE. După aceea, fereastra cu siglele companiilor va rula (Figura 3.5). Utilizatorul trebuie să selecteze compania a cărei facturi vrea să o descarce, prin simpla apăsare pe butonul care conține sigla respectivă. După ce a fost apăsat butonul, se declanșează ActionListener-ul respectiv, primul pas fiind acela de a căuta dacă sunt stocate datele de logare, pe site-ul companiei respective, ale utilizatorului. Dacă acestea nu sunt stocate (nu au fost introduse anterior), se va deschide o nouă fereastră în care i se va cere utilizatorului să le introducă (Figura 3.15). După ce datele au fost introduse și butonul "Introduceti datele" a fost apăsat, va apărea un mesaj de confirmare în care se va preciza faptul că datele au fost introduse cu succes (Figura 3.18). Dacă datele de logare sunt deja stocate în sistem, atunci fereastra în care se introduc aceste date nu va mai apărea, restul pașilor ne mai existând. În următul pas, aplicația va deschide o fereastră a browser-ului web și va intra pe site-ul companiei, se va loga în contul de utilizator cu ajutorul datelor de logare stocate anterior, și se va descărca factura. Utilizatorul va trebui să confirme acest lucru prin apăsarea butonului "Save" și să aleagă locația unde va dori ca aceasta să fie salvată. Un exemplu de utilizare a browser-ului Web este mai jos:\\\\
-WebDriverWait wait;\\
-WebDriver driver;\\
-File pathToBinary = new File("/Applications/Firefox.app/Contents/MacOS/firefox");\\
-FirefoxBinary ffBinary = new FirefoxBinary(pathToBinary);\\
-FirefoxProfile firefoxProfile = new FirefoxProfile();\\
+Descărcarea unei facturi se realizează prin apăsarea butonului "Descarcă Factura", această acțiune declanșând ActionListener-ul butonului respectiv.  Primul pas este acela de a marca acțiunea aleasă de utilizator, și anume de a seta variabila "boDownloadFactura" cu valoarea TRUE. După aceea, fereastra cu siglele companiilor va rula (Figura 4.3). Utilizatorul trebuie să selecteze compania a cărei facturi vrea să o descarce, prin simpla apăsare pe butonul care conține sigla respectivă. După ce a fost apăsat butonul, se declanșează ActionListener-ul respectiv, primul pas fiind acela de a căuta dacă sunt stocate datele de logare, pe site-ul companiei respective, ale utilizatorului. Dacă acestea nu sunt stocate (nu au fost introduse anterior), se va deschide o nouă fereastră în care i se va cere utilizatorului să le introducă (Figura 4.13). După ce datele au fost introduse și butonul "Introduceti datele" a fost apăsat, va apărea un mesaj de confirmare în care se va preciza faptul că datele au fost introduse cu succes (Figura 4.16). Dacă datele de logare sunt deja stocate în sistem, atunci fereastra în care se introduc aceste date nu va mai apărea, restul pașilor ne mai existând. În următul pas, aplicația va deschide o fereastră a browser-ului web și va intra pe site-ul companiei, se va loga în contul de utilizator cu ajutorul datelor de logare stocate anterior, și se va descărca factura. Utilizatorul va trebui să confirme acest lucru prin apăsarea butonului "Save" și să aleagă locația unde va dori ca aceasta să fie salvată.
+\begin{lstlisting}[frame=single, caption=Utilizarea Selenium]
+WebDriverWait wait;
+WebDriver driver;
+File pathToBinary = new File("/Applications/Firefox.app/Contents/
+						MacOS/firefox");
+FirefoxBinary ffBinary = new FirefoxBinary(pathToBinary);
+FirefoxProfile firefoxProfile = new FirefoxProfile();
 driver = new FirefoxDriver(ffBinary, firefoxProfile);
-wait = new WebDriverWait(driver, 60);\\
-driver.get("https://sso.orange.ro/wp/oro?jspname=login.jsp\&action=LOGINPAGE\_SSO\&full\_page=true");\\
-driver.findElement(By.id("login")).sendKeys(new String[] { username });\\
-driver.findElement(By.name("password")).sendKeys(new String[] { password });\\
-driver.findElement(By.id("autent")).click();\\
-driver.get("https://www.orange.ro/myaccount/invoice/download/lastInvoice");\\
+wait = new WebDriverWait(driver, 60);
+driver.get("https://sso.orange.ro/wp/oro?jspname=login.jsp\&
+		action=LOGINPAGE\_SSO\&full\_page=true");
+driver.findElement(By.id("login")).sendKeys(
+					new String[] { username });
+driver.findElement(By.name("password")).sendKeys(
+					new String[] { password });
+driver.findElement(By.id("autent")).click();
+driver.get("https://www.orange.ro/myaccount/
+				invoice/download/lastInvoice");
+\end{lstlisting}
 
 \begin{figure}[!ht]
 	\centering
@@ -562,7 +708,7 @@ driver.get("https://www.orange.ro/myaccount/invoice/download/lastInvoice");\\
 	\caption{Fereastra de introducere a datelor de logare în contul de utilizator al companiei}
 \end{figure}
 
-Atunci când butonul "Plătește Factura" este apăsat, se declanșează evenimentul produs de ActionListener-ul respectiv. Primul pas este acela de a verifica dacă este selectată o singură factură. În cazul în care nu este selectată, se va afișa un mesaj de eroare (Figura 3.11) și se va încheia procesul de plată. Dacă este selectată o singură factură, se verifică dacă factura respectivă este plătită. Dacă aceasta este plătită, se va afișa un mesaj de eroare (Figura 3.16). Dacă nu este plătită, se verifică dacă utilizatorul a introdus în trecut datele cardului necesare realizării plății (numărul, titularul, data expirării, codul de securitate). Aceste date sunt stocate într-un fișier din momentul introducerii acestora. Aplicația va căuta să vadă dacă acest fișier există. Dacă acest fișier nu există, va apărea o fereastră (Figura 3.17) în care utilizatorului i se va cere să introducă datele cardului. După ce câmpurile au fost completate, prin apăsarea butonului "Introduceți datele" se declanșează ActionListener-ul butonului respectiv, care verifică dacă toate câmpurile au fost completate. Dacă datele sunt completate, se va crea un fișier în care se vor stoca datele extrase din câmpurile completate, fiecare informație va fi stocată pe un singur rând (Figura 3.19). De asemenea, utilizatorul va fi informat că datele introduse au fost stocate cu succes (Figura 3.18). Dacă datele cardului au fost introduse la o plată anterioară, pasul de introducere a acestora în fișier va fi sărit. Următorul pas este acela de a intra în contul de abonat al companiei respective și de a plăti factura. Pentru a realiza acest lucru, avem nevoie de datele de logare ale utilizatorului. Acestea au fost deja stocate într-un fișier al aplicației atunci când s-a produs descărcarea facturii. O fereastră a browser-ului web va porni și, prin intermediul Selenium, va parcuge pașii necesari pentru a plăti factura. Când se ajunge la introducerea datelor cardului, se extrag datele din fișierul creat la începutul procesului de plată sau anterior și se introduc în câmpurile respective. Procesul de plată se încheie prin afișarea unui mesaj în browser, de către compania respectivă, în care se specifică faptul că plata s-a realizat cu succes. În caz contrar, acest lucru va fi evidențiat tot printr-un mesaj în browser al companiei respective. Aplicația nu poate să verifice faptul că datele cardului au fost introduse corect sau chiar datele de logare în contul de utilizator al companiei respective sunt corecte. 
+Atunci când butonul "Plătește Factura" este apăsat, se declanșează evenimentul produs de ActionListener-ul respectiv. Primul pas este acela de a verifica dacă este selectată o singură factură. În cazul în care nu este selectată, se va afișa un mesaj de eroare (Figura 4.9) și se va încheia procesul de plată. Dacă este selectată o singură factură, se verifică dacă factura respectivă este plătită. Dacă aceasta este plătită, se va afișa un mesaj de eroare (Figura 4.14). Dacă nu este plătită, se verifică dacă utilizatorul a introdus în trecut datele cardului necesare realizării plății (numărul, titularul, data expirării, codul de securitate). Aceste date sunt stocate într-un fișier din momentul introducerii acestora. Aplicația va căuta să vadă dacă acest fișier există. Dacă acest fișier nu există, va apărea o fereastră (Figura 4.15) în care utilizatorului i se va cere să introducă datele cardului. După ce câmpurile au fost completate, prin apăsarea butonului "Introduceți datele" se declanșează ActionListener-ul butonului respectiv, care verifică dacă toate câmpurile au fost completate. Dacă datele sunt completate, se va crea un fișier în care se vor stoca datele extrase din câmpurile completate, fiecare informație va fi stocată pe un singur rând (Figura 4.17). De asemenea, utilizatorul va fi informat că datele introduse au fost stocate cu succes (Figura 4.16). Dacă datele cardului au fost introduse la o plată anterioară, pasul de introducere a acestora în fișier va fi sărit. Următorul pas este acela de a intra în contul de abonat al companiei respective și de a plăti factura. Pentru a realiza acest lucru, avem nevoie de datele de logare ale utilizatorului. Acestea au fost deja stocate într-un fișier al aplicației atunci când s-a produs descărcarea facturii. O fereastră a browser-ului web va porni și, prin intermediul Selenium, va parcuge pașii necesari pentru a plăti factura. Când se ajunge la introducerea datelor cardului, se extrag datele din fișierul creat la începutul procesului de plată sau anterior și se introduc în câmpurile respective. Procesul de plată se încheie prin afișarea unui mesaj în browser, de către compania respectivă, în care se specifică faptul că plata s-a realizat cu succes. În caz contrar, acest lucru va fi evidențiat tot printr-un mesaj în browser al companiei respective. Aplicația nu poate să verifice faptul că datele cardului au fost introduse corect sau chiar datele de logare în contul de utilizator al companiei respective sunt corecte. 
 
 \begin{figure}[!ht]
 	\centering
@@ -588,7 +734,7 @@ Atunci când butonul "Plătește Factura" este apăsat, se declanșează evenime
 	\caption{Modul în care sunt stocate datele cardului în fișier}
 \end{figure}
 
-După ce plata facturii a fost realizată cu succes, factura trebuie marcată ca fiind plătită. O factură, atunci când este introdusă în baza de date, este marcată ca fiind neachitată. Marcarea facturii ca fiind plătită se realizează prin apăsarea butonului "Factură plătită". În momentul apăsării butonul intervine ActionListener-ul respectiv care gestionează acest eveniment. Primul pas este verificarea dacă o singură factură este selectată, în caz contrar se va afișa un mesaj de eroare (Figura 3.11). Al doilea pas este verificarea dacă factura este neachitată, în caz contrar se va afișa un mesaj de eroare (Figura 3.16). Dacă cele două verificări au fost trecute cu succes, se extrage din tabelul interfeței grafice numărul facturii selectate, se realizează o conexiune la baza de date și se actualizează statusul facturii care are numărul egal cu cel extras din tabelul interfeței grafice. Utilizatorul este înștiințat că operația s-a realizat cu succes printr-un mesaj (Figura 3.20). Dacă va apărea o eroare la conexiunea cu baza de date, utilizatorul va fi informat printr-o eroare (Figura 3.10).
+După ce plata facturii a fost realizată cu succes, factura trebuie marcată ca fiind plătită. O factură, atunci când este introdusă în baza de date, este marcată ca fiind neachitată. Marcarea facturii ca fiind plătită se realizează prin apăsarea butonului "Factură plătită". În momentul apăsării butonul intervine ActionListener-ul respectiv care gestionează acest eveniment. Primul pas este verificarea dacă o singură factură este selectată, în caz contrar se va afișa un mesaj de eroare (Figura 4.9). Al doilea pas este verificarea dacă factura este neachitată, în caz contrar se va afișa un mesaj de eroare (Figura 4.14). Dacă cele două verificări au fost trecute cu succes, se extrage din tabelul interfeței grafice numărul facturii selectate, se realizează o conexiune la baza de date și se actualizează statusul facturii care are numărul egal cu cel extras din tabelul interfeței grafice. Utilizatorul este înștiințat că operația s-a realizat cu succes printr-un mesaj (Figura 4.18). Dacă va apărea o eroare la conexiunea cu baza de date, utilizatorul va fi informat printr-o eroare (Figura 4.8).
 
 \begin{figure}[!ht]
 	\centering
@@ -596,25 +742,36 @@ După ce plata facturii a fost realizată cu succes, factura trebuie marcată ca
 	\caption{Mesajul prin care utilizatorul este informat că factura a fost marcată ca fiind plătită cu succes}
 \end{figure}
 
-Vizualizarea unei facturi se realizează prin selectarea facturii respective și apăsarea butonului "Vizualizează factura". Atunci când este apăsat acest buton, ActionListener-ul respectiv gestionează acest eveniment. Primul pas este acela de a verifica dacă este selectată o singură factură, în caz contrar se va informa utilizatorul prin afișarea unui mesaj (Figura 3.11). Dacă este selectată o singură factură, se va extrage din tabel numărul facturii selectate, după care se va realiza o conexiune la baza de date și se va extrage, din tabelul bazei de date, calea unde este stocată factura cu numărul respectiv. După aceea, se va deschide fișierul aflat la calea respectivă. Fișierul PDF se va deschide cu ajutorul programului prestabilit pentru deschiderea fișierelor care au acest tip de format (Adobe Reader, Internet Explorer, etc). \\\\
-String nrFactura = getSelectedNrFactura();\\
-Query query = em.createQuery("SELECT f FROM Factura f WHERE f.nrFactura = :nrFact");\\
-query.setParameter("nrFact", nrFactura);\\
-$List<$$Factura>$ results = query.getResultList();\\
-String link = results.get(0).getLink();\\
-Desktop.getDesktop().open(new File(link));\\
+Vizualizarea unei facturi se realizează prin selectarea facturii respective și apăsarea butonului "Vizualizează factura". Atunci când este apăsat acest buton, ActionListener-ul respectiv gestionează acest eveniment. Primul pas este acela de a verifica dacă este selectată o singură factură, în caz contrar se va informa utilizatorul prin afișarea unui mesaj (Figura 4.9). Dacă este selectată o singură factură, se va extrage din tabel numărul facturii selectate, după care se va realiza o conexiune la baza de date și se va extrage, din tabelul bazei de date, calea unde este stocată factura cu numărul respectiv. După aceea, se va deschide fișierul aflat la calea respectivă. Fișierul PDF se va deschide cu ajutorul programului prestabilit pentru deschiderea fișierelor care au acest tip de format (Adobe Reader, Internet Explorer, etc). 
 
-Generarea rapoartelor este disponibilă prin apăsarea butonului "Generează Rapoarte", declanșând ActionListener-ul respectiv care rulează fereastra "Rapoarte" (Figura 3.21). Fereastra rapoarte este alcătuită numai din perechi de elemente de tip JLabel. Primul element al unei perechi este reprezentat de numele utilității și anul de consum pentru care se generează raport, iar al doilea element este reprezentat de valoarea consumată pentru acea utilitate în intervalul respectiv de timp. În momentul rulării ferestrei "Rapoarte" se realizează o conexiune la baza de date și se extrage din ea doar facturile care sunt plătite.\\\\
-Query query = em.createQuery("SELECT f FROM Factura f WHERE f.status = 'Platita'");\\
-$List<$$Factura>$ results = query.getResultList();\\\\
-Următorul pas este de a lua fiecare factură în parte și a verifica cărui tip de utilitate îi aparține și din ce perioadă. În urma aflării acestui detaliu, suma facturii se va adăuga la suma utilității respective. După ce s-au parcurs toate facturile, rezultatele vor fi afișate cu ajutorul JLabel-urilor, primind valorile rezultatelor.\\\\
-NumberFormat formatter = new DecimalFormat("\#0.00");\\     
-labelTelefonieValue.setText(formatter.format(telefonie));\\
-labelGazeNaturaleValue.setText(formatter.format(gazeNat));\\
-labelTelefonie2015Value.setText(formatter.format(telefonie2015));\\
-labelTelefonie2016Value.setText(formatter.format(telefonie2016));\\
-labelGazeNaturale2015Value.setText(formatter.format(gazeNat2015));\\
-labelGazeNaturale2016Value.setText(formatter.format(gazeNat2016));\\\\
+\begin{lstlisting}[frame=single, caption=Extragerea și deschiderea fișierului PDF aferent facturii respective]
+String nrFactura = getSelectedNrFactura();
+Query query = em.createQuery("SELECT f FROM Factura f WHERE 
+					f.nrFactura = :nrFact");
+query.setParameter("nrFact", nrFactura);
+$List<$$Factura>$ results = query.getResultList();
+String link = results.get(0).getLink();
+Desktop.getDesktop().open(new File(link));
+\end{lstlisting}
+
+Generarea rapoartelor este disponibilă prin apăsarea butonului "Generează Rapoarte", declanșând ActionListener-ul respectiv care rulează fereastra "Rapoarte" (Figura 4.19). Fereastra rapoarte este alcătuită numai din perechi de elemente de tip JLabel. Primul element al unei perechi este reprezentat de numele utilității și anul de consum pentru care se generează raport, iar al doilea element este reprezentat de valoarea consumată pentru acea utilitate în intervalul respectiv de timp. În momentul rulării ferestrei "Rapoarte" se realizează o conexiune la baza de date și se extrage din ea doar facturile care sunt plătite.
+
+\begin{lstlisting}[frame=single, caption=Extragerea facturilor plătite]
+Query query = em.createQuery("SELECT f FROM Factura f WHERE 
+                                   f.status = 'Platita'");
+List<Factura> results = query.getResultList();
+\end{lstlisting}
+
+Următorul pas este de a lua fiecare factură în parte și a verifica cărui tip de utilitate îi aparține și din ce perioadă. În urma aflării acestui detaliu, suma facturii se va adăuga la suma utilității respective. După ce s-au parcurs toate facturile, rezultatele vor fi afișate cu ajutorul JLabel-urilor, primind valorile rezultatelor.
+\begin{lstlisting}[frame=single, caption=Setare valori JLabel]
+NumberFormat formatter = new DecimalFormat("\#0.00"); 
+labelTelefonieValue.setText(formatter.format(telefonie));
+labelGazeNaturaleValue.setText(formatter.format(gazeNat));
+labelTelefonie2015Value.setText(formatter.format(telefonie2015));
+labelTelefonie2016Value.setText(formatter.format(telefonie2016));
+labelGazeNaturale2015Value.setText(formatter.format(gazeNat2015));
+labelGazeNaturale2016Value.setText(formatter.format(gazeNat2016));
+\end{lstlisting}
 
 \begin{figure}[!ht]
 	\centering
@@ -622,30 +779,67 @@ labelGazeNaturale2016Value.setText(formatter.format(gazeNat2016));\\\\
 	\caption{Fereastra "Rapoarte" - sunt generate rapoartele}
 \end{figure}
 
-Căutarea unei facturi se realizează prin introducerea de caractere în câmpul destinat căutării. Tabelului respectiv îi este atribuit un element de sortare de tip TableRowSorter. JTextField-ului pentru introducerea de caractere îi este atribuit un ActionListener care gestionează fiecare modificare a textului (introducerea, modificarea sau ștergerea caracterelor). Atunci când o acțiune de modificare a textului are loc, elementului de sortare al tabelului îi este atribuit un nou filtru de sortare, bazat pe conținutul actual al câmpului de căutare. După ce sortarea a avut loc, în tabel vor fi afișate doar rândurile care conțin caracterele introduse în câmpul de căutare. Căutarea se realizează în tot tabelul și nu doar în anumite câmpuri.\\\\
-final TableRowSorter$<$TableModel$>$ rowSorter = new TableRowSorter$<>$(tabel.getModel());\\
-tabel.setRowSorter(rowSorter);\\
-textSearchFactura.getDocument().addDocumentListener(new DocumentListener() \{\\\\
-	@Override\\
-	public void insertUpdate(DocumentEvent e) \{\\
-		String text = textSearchFactura.getText();\\
-		if (text.trim().length() == 0)\\
-			rowSorter.setRowFilter(null);\\
-		else rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));\}\\\\
-	@Override\\
-	public void removeUpdate(DocumentEvent e) \{\\
-		String text = textSearchFactura.getText();\\
-		if (text.trim().length() == 0)\\
-			rowSorter.setRowFilter(null);\\
-		else rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));\}\\\\
-	@Override\\
-	public void changedUpdate(DocumentEvent e) \{\\
-		String text = textSearchFactura.getText();\\
-		if (text.trim().length() == 0)\\
-			rowSorter.setRowFilter(null);\\
-		else rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));\}\});\\
+Căutarea unei facturi se realizează prin introducerea de caractere în câmpul destinat căutării. Tabelului respectiv îi este atribuit un element de sortare de tip TableRowSorter. JTextField-ului pentru introducerea de caractere îi este atribuit un ActionListener care gestionează fiecare modificare a textului (introducerea, modificarea sau ștergerea caracterelor). Atunci când o acțiune de modificare a textului are loc, elementului de sortare al tabelului îi este atribuit un nou filtru de sortare, bazat pe conținutul actual al câmpului de căutare. După ce sortarea a avut loc, în tabel vor fi afișate doar rândurile care conțin caracterele introduse în câmpul de căutare. Căutarea se realizează în tot tabelul și nu doar în anumite câmpuri.\\\\\\\\\\
+\begin{lstlisting}[frame=single, caption=Căutarea în tabel]
+final TableRowSorter<TableModel> rowSorter = 
+		new TableRowSorter<>(tabel.getModel());
+tabel.setRowSorter(rowSorter);
+textSearchFactura.getDocument().addDocumentListener(
+new DocumentListener() {
+
+@Override
+public void insertUpdate(DocumentEvent e) {
+  String text = textSearchFactura.getText();
+  if (text.trim().length() == 0)
+    rowSorter.setRowFilter(null);
+  else 
+    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+}
+
+@Override
+public void removeUpdate(DocumentEvent e) {
+  String text = textSearchFactura.getText();
+  if (text.trim().length() == 0)
+    rowSorter.setRowFilter(null);
+  else 
+    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+}
+
+@Override
+public void changedUpdate(DocumentEvent e) {
+  String text = textSearchFactura.getText();
+  if (text.trim().length() == 0)
+    rowSorter.setRowFilter(null);
+  else 
+    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+}});
+\end{lstlisting}
 
 \chapter{Concluzii}
+
+Plata electronică a facturilor este o caracteristică a mediului online și telefoniei bancare. Deși această tehnologie a fost disponibilă pe la mijlocul anilor  '90, nu a fost foarte utilizată din cauza faptului că foarte puțină lume dispunea de internet. Începând cu anul 2000, plata electronică a facturilor a început să crească dramatic. 
+
+Din punct de vedere al consumatorului, plata electronică a facturilor este mai ieftină, mai rapidă și mai agreată decât scrierea cecurilor sau completarea hârtiilor. Din punct de vedere al băncilor, această tehnologie a dus la scăderea semnificativă a consumui de hârtie și la creșterea fidelității clienților.
+
+Totuși, în ciuda acestor progrese vizibile, procesul de plată a facturilor nu este foarte prietenos cu cei care sunt noi în domeniul tehnologiei și mai ales în domeniul internetului. Acesta este unul dintre motivele principale pentru care oamenii aleg să stea câte o ora la coadă decât să învețe să folosească internetul. Un exemplu de oameni din această categorie sunt părinții mei, care deși știu să utilizeze calculatorul, nu reușesc să plătească cu succes o factură în format electronic. 
+
+Se spune că timpul este cea mai importantă bogăție a omului, deoarece odată pierdut nu mai poate fi recuperat. Și eu sunt de acord cu această afirmație și consider că  aplicația dezvoltată de mine reprezintă un mod foarte bun de a economisi timp. Cantitatea de timp nu este una foarte mare, dar în timp, această cantitate contează. Este mult mai ușor să plătești trei facturi în două minute decât să le plătești în zece minute sau chiar cincisprezece minute.
+
+Viziunea mea pentru următorii 5 ani este aceea că majoritatea oamenilor vor plăti facturile prin intermediul internetului. Din acest motiv consider că domeniul plăților online va avea parte de îmbunătățiri continue și reprezintă o mare responsabilitate pentru mine faptul că am realizat cercetări în această arie.
+
+Toate cele prezentate mai sus mi-au stârnit curiozitate și interesul si m-au determinat să aleg această temă pentru lucrarea mea de licență, iar acest lucru presupune să mă documentez cât mai serios cu privire la domeniul plăților online, să înțeleg cum funcționează toate aceste mecanisme și să caut o metoda de îmbunătățire a acestora din toate punctele de vedere. 
+
+Au fost implementate cu succes toate operațiile pentru facturile a 2 companii: Telekom și Orange. Pentru Compania E-ON sunt disponibile toate operațiile mai puțin cea de plată a facturii. Implementarea acestei operații nu s-a realizat din cauza dificultăților întâlnite la inițierea procesului de plată din contul de abonat E-ON prin intermediul driverului web Selenium. Mai exact, butonul care plătește factura este un buton invizibil, acesta devenind vizibil imediat cum se selectează o factură, Selenium neputând să detecteze acest buton. Pentru această problemă va trebui abordată o nouă strategie. 
+
+O altă dificultate a apărut la conectarea în contul de abonat al companiei Telekom, aici browserul crea o nouă fereastră pentru introducerea datelor de logare, după care revenea la vechea fereastră. A fost necesară o gestiune a ferestrelor prin intermediul Selenium pentru rezolvarea acestei probleme.
+
+O nouă dificultate am întâlnit la maparea Hibernate la baza de date, mai precis configurarea clasei de mapare Java (clasa Factura). Atunci când Hibernate crează tabelul bazei de date, automat crează și câmpul ID care se auto-incrementează de fiecare dată când este introdusă o nouă factură. Clasa de mapare Java nu conținea adnotările necesare extragerii acestei date, automat întreg procesul fiind dat peste cap. Configurarea adnotărilor respective, dar și o verificare și reintroducere a tuturor resurselor pentru Hibernate, au făcut ca această dificultate să dispară.
+
+Nu au mai fost întâmpinate dificultăți notabile, căutare informației, mai exact faptul că găseam unele răspunsuri sau exemple mai greu, a reprezentat și ea o dificultate, dar nu a fost una foarte mare deoarece cu această dificultate ne confruntăm zilnic, mai ales în domeniul informaticii.
+
+Planul pentru viitor al aplicației este de a suporta și alte companii ( RCS-RDS, Vodafone, UPC, Electrica, etc) și de a realiza toate operațiile pe facturile companiilor respective. Implementarea unei noi acțiuni (implicit și a unui nou buton), "Descarcă-Adaugă-Plătește", care să îmbibeze 3 acțiuni într-una singură, reprezintă un alt plan pentru viitor. Prin apăsarea butonul "Descarcă-Adaugă-Plătește" și selectarea companiei, aplicația va descărca factura din cont, o va introduce în baza de date și o va plăti. Toate aceste operații realizându-se automat una după alta. În acest moment, fiecare operație trebuie să fie declanșată de utilizator. 
+
+Un alt plan pentru viitor este acela de a implementa aplicația în familie, în prima fază,  și anume utilizarea ei cu succes de către membrii familiei.
 
 \begin{thebibliography}{9}
 	\bibitem{cursPracticJava}  Cristian Frăsinaru, {\em Curs Practic de Java}, Editura Maxitrom, 2005
@@ -656,6 +850,7 @@ textSearchFactura.getDocument().addDocumentListener(new DocumentListener() \{\\\
 	\\\texttt{https://pdfbox.apache.org/index.html}
 	\bibitem{swingBook} Matthew Robinson, Pavel Vorobiev, {\em Java Swing (Second Edition)}, Editura Manning Publications, 2003
 	\bibitem{SeleniumBook} Satya Avasarala, {\em Selenium WebDriver Practical Guide}, Editura Packt Publishing, 2014
+	\bibitem{PlatiFacturi}Modul de plată al facturilor pe platforma online "platifacturi", \url{http://www.platifacturi.com/cum-platesc-facturi}.
 \end{thebibliography}
 	
 \end{document}
